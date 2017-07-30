@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">ProyectoFinal</string>
+    <string name="MainCli">Clients</string>
+    <string name="btnDetCli.Content">Client Details</string>
+    <string name="btnConfig.Content">Configuration</string>
+    <string name="MenuConf">Configuration Menu</string>
+    <string name="txtName">Name:</string>
+    <string name="txtCed">Identification Number:</string>
+    <string name="txtTel">Telephone Number:</string>
+    <string name="txtDir">Address:</string>
+    <string name="txtDetaCli">Client Details</string>
+    <string name="txtDName">Name:</string>
+    <string name="txtDCed">Identification Number:</string>
+    <string name="txtDTel">Telephone Number:</string>
+    <string name="txtDDir">Address:</string>
+    <string name="txtDForm">Complete the Form</string>
+</resources>
