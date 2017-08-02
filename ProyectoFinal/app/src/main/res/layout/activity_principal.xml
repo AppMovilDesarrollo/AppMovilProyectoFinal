@@ -10,10 +10,10 @@
         android:layout_width="368dp"
         android:layout_height="495dp"
         android:orientation="vertical"
+        android:weightSum="1"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp"
-        android:weightSum="1">
+        tools:layout_editor_absoluteY="8dp">
 
         <TextView
             android:id="@+id/txtTitCli"
@@ -28,26 +28,39 @@
         <ExpandableListView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.62" />
-        <Button
-            android:id="@+id/btnDetCli"
-            android:layout_width="240dp"
-            android:layout_height="81dp"
-            android:layout_margin="60dp"
-            android:text="@string/btnDetCli.Content"
-            android:textAlignment="center"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="0dp" />
+            android:layout_marginBottom="30sp"
+            android:layout_weight="0.25" />
 
-        <Button
-            android:id="@+id/btnConfig"
-            android:layout_width="242dp"
-            android:layout_height="74dp"
-            android:layout_margin="60dp"
-            android:text="@string/btnConfig.Content"
-            android:textAlignment="center"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_editor_absoluteY="0dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:weightSum="1">
+
+            <Button
+                android:id="@+id/btnDetCli"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30sp"
+                android:layout_marginLeft="95sp"
+                android:onClick="callDetallesCliente"
+                android:text="@string/btnDetCli.Content"
+                android:textAlignment="center"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="0dp" />
+
+            <Button
+                android:id="@+id/btnConfig"
+                android:layout_width="178dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="95sp"
+                android:onClick="callPantallaConfiguracion"
+                android:text="@string/btnConfig.Content"
+                android:textAlignment="center"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="0dp" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
