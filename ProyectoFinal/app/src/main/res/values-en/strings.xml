@@ -14,4 +14,5 @@
     <string name="txtDTel">Telephone Number:</string>
     <string name="txtDDir">Address:</string>
     <string name="txtDForm">Complete the Form</string>
+    <string name="btnSave.Content">Save</string>
 </resources>
