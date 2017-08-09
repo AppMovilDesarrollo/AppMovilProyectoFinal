@@ -1,12 +1,12 @@
 package cr.afinal.proyecto.proyectofinal;
 
-import android.content.Intent;
-import android.support.annotation.IntegerRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import cr.afinal.proyecto.proyectofinal.basedatos.ModeladoDB.ClientesHelper;
 
 public class Pantalla_Configuracion extends AppCompatActivity {
     Button btnSave;
@@ -24,7 +24,7 @@ public class Pantalla_Configuracion extends AppCompatActivity {
         etxtTel = (EditText)findViewById(R.id.etxtTel);
         etxtDir = (EditText)findViewById(R.id.etxtDir);
 
-        final MySQLiteHelper db = new MySQLiteHelper(this);
+        final ClientesHelper db = new ClientesHelper(this);
 
         btnSave.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
