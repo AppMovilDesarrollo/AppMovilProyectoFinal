@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import cr.afinal.proyecto.proyectofinal.basedatos.ModeladoDB.ClientesHelper;
+import cr.afinal.proyecto.proyectofinal.basedatos.ModeladoDB.ConexionHelper;
 
 public class Pantalla_Configuracion extends AppCompatActivity {
     Button btnSave;
@@ -24,7 +24,7 @@ public class Pantalla_Configuracion extends AppCompatActivity {
         etxtTel = (EditText)findViewById(R.id.etxtTel);
         etxtDir = (EditText)findViewById(R.id.etxtDir);
 
-        final ClientesHelper db = new ClientesHelper(this);
+        final ConexionHelper db = new ConexionHelper(this);
 
         btnSave.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

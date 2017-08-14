@@ -2,7 +2,7 @@ package cr.afinal.proyecto.proyectofinal.basedatos;
 
 import android.content.ContentValues;
 
-import cr.afinal.proyecto.proyectofinal.basedatos.ModeladoDB.TarejtasConstract;
+import cr.afinal.proyecto.proyectofinal.basedatos.ModeladoDB.TarjetasConstract;
 
 
 /**
@@ -33,11 +33,11 @@ public class Tarjetas {
 
         ContentValues values = new ContentValues();
 
-        values.put(TarejtasConstract.TarejtasEntry.ID, ID);
-        values.put(TarejtasConstract.TarejtasEntry.Cedula_Cliente, Cedula_Cliente);
-        values.put(TarejtasConstract.TarejtasEntry.NumeroTarjeta, NumeroTarjeta);
-        values.put(TarejtasConstract.TarejtasEntry.FechaVencimiento, FechaVencimiento);
-        values.put(TarejtasConstract.TarejtasEntry.TipoTarjeta, TipoTarjeta);
+        values.put(TarjetasConstract.TarjetasEntry.ID, ID);
+        values.put(TarjetasConstract.TarjetasEntry.Cedula_Cliente, Cedula_Cliente);
+        values.put(TarjetasConstract.TarjetasEntry.NumeroTarjeta, NumeroTarjeta);
+        values.put(TarjetasConstract.TarjetasEntry.FechaVencimiento, FechaVencimiento);
+        values.put(TarjetasConstract.TarjetasEntry.TipoTarjeta, TipoTarjeta);
 
 
         return values;

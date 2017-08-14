@@ -6,9 +6,9 @@ import android.provider.BaseColumns;
  * Created by Jeison-UTN on 08/08/2017.
  */
 
-public class TarejtasConstract {
+public class TarjetasConstract {
 
-    public static abstract class TarejtasEntry implements BaseColumns {
+    public static abstract class TarjetasEntry implements BaseColumns {
         public static final String TABLE_NAME = "Tarjetas";
 
 
