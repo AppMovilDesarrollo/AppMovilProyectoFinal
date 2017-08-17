@@ -17,7 +17,18 @@
             </intent-filter>
         </activity>
         <activity android:name=".PantallaConfiguracion" />
-        <activity android:name=".DetallesCliente"></activity>
+        <activity android:name=".DetallesCliente" />
+        <activity
+            android:name=".Clientes_Interface.ClientesActivity"
+            android:label="@string/title_activity_clientes"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
     </application>
 
 </manifest>

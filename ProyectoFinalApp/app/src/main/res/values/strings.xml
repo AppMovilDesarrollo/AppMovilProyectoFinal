@@ -15,5 +15,9 @@
     <string name="txtDDir">Dirección:</string>
     <string name="txtDForm">Llenar el Formulario</string>
     <string name="btnSave.Content">Guardar</string>
+    <string name="title_activity_clientes">ClientesActivity</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

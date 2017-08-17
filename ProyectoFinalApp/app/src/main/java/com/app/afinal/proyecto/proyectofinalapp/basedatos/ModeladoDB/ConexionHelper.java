@@ -28,7 +28,9 @@ import  com.app.afinal.proyecto.proyectofinalapp.basedatos.Tarjetas;
 public class ConexionHelper extends SQLiteOpenHelper {
 
 
-    private static String DB_PATH = "cr/afinal/proyecto/proyectofinal/basedatos/";
+
+
+    private static String DB_PATH = "com/app/afinal/proyecto/proyectofinalapp/basedatos/";
     private static String DB_NAME = "proyectofinal.db";
     private SQLiteDatabase myDataBase;
     private final Context myContext;
@@ -108,7 +110,7 @@ public class ConexionHelper extends SQLiteOpenHelper {
     }
 
 
-    public Cursor allClientes() {
+    public  Cursor allClientes() {
         return getReadableDatabase()
                 .query(
                         ClientesConstract.ClientesEntry.TABLE_NAME,
@@ -547,42 +549,3 @@ public class ConexionHelper extends SQLiteOpenHelper {
 
 
 }
-
-
-//    public Clientes getCliente(int id){
-//
-//        // 1. get reference to readable DB
-//        SQLiteDatabase db = this.getReadableDatabase();
-//
-//        // 2. build query
-//        Cursor cursor =
-//                db.query(TABLE_CLIENTES, // a. table
-//                        COLUMNS, // b. column names
-//                        " cedula = ?", // c. selections
-//                        new String[] { String.valueOf(id) }, // d. selections args
-//                        null, // e. group by
-//                        null, // f. having
-//                        null, // g. order by
-//                        null); // h. limit
-//
-//        // 3. if we got results get the first one
-//        if (cursor != null)
-//            cursor.moveToFirst();
-//
-//        // 4. build clientes object
-//        Cliente cliente = new Cliente();
-//        cliente.setCedula(Integer.parseInt(cursor.getString(0)));
-//        cliente.setNombre(cursor.getString(1));
-//        cliente.setTelefono(Integer.parseInt(cursor.getString(2)));
-//        cliente.setDireccion(cursor.getString(3));
-//
-//        //log
-//        Log.d("getCliente("+id+")", cliente.toString());
-//
-//        // 5. return clientes
-//        return cliente;
-//    }
-
-
-
-
