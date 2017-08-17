@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">ProyectoFinalApp</string>
+    <string name="MainCli">Clientes</string>
+    <string name="btnDetCli.Content">Detalles del Cliente</string>
+    <string name="btnConfig.Content">Configuración</string>
+    <string name="MenuConf">Menu Configuración</string>
+    <string name="txtName">Nombre:</string>
+    <string name="txtCed">Número de Cédula:</string>
+    <string name="txtTel">Número de Teléfono:</string>
+    <string name="txtDir">Dirección:</string>
+    <string name="txtDetaCli">Detalles del Cliente</string>
+    <string name="txtDName">Nombre:</string>
+    <string name="txtDCed">Número de Cédula:</string>
+    <string name="txtDTel">Número de Teléfono:</string>
+    <string name="txtDDir">Dirección:</string>
+    <string name="txtDForm">Llenar el Formulario</string>
+    <string name="btnSave.Content">Guardar</string>
+
+</resources>
