@@ -1,22 +1,14 @@
 package  com.app.afinal.proyecto.proyectofinalapp.basedatos.ModeladoDB;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.List;
 import java.util.LinkedList;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import  com.app.afinal.proyecto.proyectofinalapp.basedatos.Clientes;
-import  com.app.afinal.proyecto.proyectofinalapp.basedatos.Clientes_Visitas;
-import  com.app.afinal.proyecto.proyectofinalapp.basedatos.ModeladoDB.ClientesConstract;
 import  com.app.afinal.proyecto.proyectofinalapp.basedatos.RegistroPago;
 import  com.app.afinal.proyecto.proyectofinalapp.basedatos.Tarjetas;
 
@@ -56,11 +48,11 @@ public class ConexionHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 
         db.execSQL("CREATE TABLE "+ TarjetasConstract.TarjetasEntry.TABLE_NAME+ "("
-                +TarjetasConstract.TarjetasEntry.ID+	"INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,"
-                +TarjetasConstract.TarjetasEntry.Cedula_Cliente+	"NUMERIC NOT NULL,"
-                +TarjetasConstract.TarjetasEntry.NumeroTarjeta+	"NUMERIC NOT NULL,"
-                +TarjetasConstract.TarjetasEntry.FechaVencimiento+	"TEXT NOT NULL,"
-                +TarjetasConstract.TarjetasEntry.TipoTarjeta+	"INTEGER NOT NULL+)");
+                +TarjetasConstract.TarjetasEntry.ID+	" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,"
+                +TarjetasConstract.TarjetasEntry.Cedula_Cliente+	" NUMERIC NOT NULL,"
+                +TarjetasConstract.TarjetasEntry.NumeroTarjeta+	" NUMERIC NOT NULL,"
+                +TarjetasConstract.TarjetasEntry.FechaVencimiento+	" TEXT NOT NULL,"
+                +TarjetasConstract.TarjetasEntry.TipoTarjeta+	" INTEGER NOT NULL)");
 
         Tarjetas tarjetas1 = new Tarjetas();
         tarjetas1.setID(1);
@@ -79,11 +71,11 @@ public class ConexionHelper extends SQLiteOpenHelper {
         insertTarjetas(db,tarjetas1);
         insertTarjetas(db,tarjetas2);
 
-        db.execSQL("CREATE TABLE"+ RegistroPagoConstract.RegistroPagoEntry.TABLE_NAME+" ("
-                +RegistroPagoConstract.RegistroPagoEntry.ID	+"INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,"
-                +RegistroPagoConstract.RegistroPagoEntry.Cedula_Cliente	+"NUMERIC NOT NULL,"
-                +RegistroPagoConstract.RegistroPagoEntry.Monto	+"NUMERIC NOT NULL,"
-                +RegistroPagoConstract.RegistroPagoEntry.Tarjeta_ID	+"INTEGER NOT NULL)");
+        db.execSQL("CREATE TABLE "+ RegistroPagoConstract.RegistroPagoEntry.TABLE_NAME+" ("
+                +RegistroPagoConstract.RegistroPagoEntry.ID	+" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,"
+                +RegistroPagoConstract.RegistroPagoEntry.Cedula_Cliente	+" NUMERIC NOT NULL,"
+                +RegistroPagoConstract.RegistroPagoEntry.Monto	+" NUMERIC NOT NULL,"
+                +RegistroPagoConstract.RegistroPagoEntry.Tarjeta_ID	+" INTEGER NOT NULL)");
 
         RegistroPago registroPago1 = new RegistroPago();
 
@@ -101,37 +93,17 @@ public class ConexionHelper extends SQLiteOpenHelper {
         insertRegistroPago(db,registroPago1);
         insertRegistroPago(db,registroPago2);
 
-        db.execSQL("CREATE TABLE "+ Clientes_VisitasConstract.Clientes_VisitasEntry.TABLE_NAME +" ("
-                +Clientes_VisitasConstract.Clientes_VisitasEntry.ID	+"INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,"
-                +Clientes_VisitasConstract.Clientes_VisitasEntry.Nombre	+"TEXT NOT NULL,"
-                +Clientes_VisitasConstract.Clientes_VisitasEntry.Telefono	+"TEXT NOT NULL,"
-                +Clientes_VisitasConstract.Clientes_VisitasEntry.Direccion	+"TEXT NOT NULL,"
-                +Clientes_VisitasConstract.Clientes_VisitasEntry.Cedula_Cliente	+"NUMERIC NOT NULL)");
-
-        Clientes_Visitas cv1 = new Clientes_Visitas();
-        cv1.setID(1);
-        cv1.setNombre("Jeison Andres Cespedes Morales");
-        cv1.setTelefono("+50685978859");
-        cv1.setDireccion("Heredia, Heredia, Corazon de Jesus");
-        cv1.setCedula_Cliente("604150516");
-
-        Clientes_Visitas cv2 = new Clientes_Visitas();
-        cv2.setID(2);
-        cv2.setNombre("Yensy Vannessa Cespedes Morales");
-        cv2.setTelefono("+50683735557");
-        cv2.setDireccion("Heredia, Heredia, Corazon de Jesus");
-        cv2.setCedula_Cliente("604110437");
-
-        insertClientes_Visitas(db,cv1);
-        insertClientes_Visitas(db,cv2);
-
-
         db.execSQL("CREATE TABLE "+ ClientesConstract.ClientesEntry.TABLE_NAME+" ("
-                +ClientesConstract.ClientesEntry.ID	+"INTEGER PRIMARY KEY AUTOINCREMENT,"
-                +ClientesConstract.ClientesEntry.Cedula_Cliente	+"NUMERIC NOT NULL UNIQUE,"
-                +ClientesConstract.ClientesEntry.Salario	+"NUMERIC DEFAULT 0,"
-                +ClientesConstract.ClientesEntry.LugarTrabajo	+"TEXT NOT NULL,"
-                +ClientesConstract.ClientesEntry.Fotografia	+"TEXT NOT NULL)");
+                +ClientesConstract.ClientesEntry.ID	+" INTEGER PRIMARY KEY AUTOINCREMENT,"
+                +ClientesConstract.ClientesEntry.Nombre	+" TEXT NOT NULL,"
+                +ClientesConstract.ClientesEntry.Cedula_Cliente	+" NUMERIC NOT NULL UNIQUE,"
+                +ClientesConstract.ClientesEntry.LugarTrabajo	+" TEXT NOT NULL,"
+                +ClientesConstract.ClientesEntry.Salario	+" NUMERIC DEFAULT 0,"
+                +ClientesConstract.ClientesEntry.Telefono	+" TEXT NOT NULL,"
+                +ClientesConstract.ClientesEntry.Direccion	+" TEXT NOT NULL,"
+                +ClientesConstract.ClientesEntry.Fotografia	+" TEXT NOT NULL)");
+
+
 
         Clientes c1 = new Clientes();
         c1.setID(1);
@@ -139,13 +111,23 @@ public class ConexionHelper extends SQLiteOpenHelper {
         c1.setSalario(1000000);
         c1.setLugarTrabajo("Grupo Mutual Alajuela");
         c1.setFotografia("Foto1.jpg");
-        
+        c1.setNombre("Jeison Andres Cespedes Morales");
+        c1.setTelefono("+50685978859");
+        c1.setDireccion("Heredia, Heredia, Corazon de Jesus");
+        c1.setCedula_Cliente("604150516");
+
+
         Clientes c2 = new Clientes();
         c2.setID(2);
         c2.setCedula_Cliente("604110437");
         c2.setSalario(50000);
         c2.setLugarTrabajo("Estudiante");
         c2.setFotografia("Foto2.jpg");
+        c2.setNombre("Yensy Vannessa Cespedes Morales");
+        c2.setTelefono("+50683735557");
+        c2.setDireccion("Heredia, Heredia, Corazon de Jesus");
+        c2.setCedula_Cliente("604110437");
+
 
         insertClientes(db,c1);
         insertClientes(db,c2);
@@ -154,6 +136,10 @@ public class ConexionHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+
+        db.execSQL("DROP TABLE IF EXISTS " + ClientesConstract.ClientesEntry.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + RegistroPagoConstract.RegistroPagoEntry.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + TarjetasConstract.TarjetasEntry.TABLE_NAME);
 
         this.onCreate(db);
     }
@@ -165,7 +151,7 @@ public class ConexionHelper extends SQLiteOpenHelper {
                 null,
                 clientes.toContentValues());
 
-        db.close();
+
     }
 
     public boolean updateClientes(SQLiteDatabase db, Clientes clientes) {
@@ -180,7 +166,7 @@ public class ConexionHelper extends SQLiteOpenHelper {
                 new String[]{String.valueOf(clientes.getID())}); //selection args
 
         // 4. close
-        db.close();
+
 
         if (i != 0) {
             update = true;
@@ -199,7 +185,7 @@ public class ConexionHelper extends SQLiteOpenHelper {
                 new String[]{String.valueOf(clientes.getID())}); //selections args
 
         // 3. close
-        db.close();
+
 
     }
 
@@ -259,107 +245,6 @@ public class ConexionHelper extends SQLiteOpenHelper {
     }
 
 
-    public void insertClientes_Visitas(SQLiteDatabase db, Clientes_Visitas clientes_visitas) {
-
-        db.insert(
-                Clientes_VisitasConstract.Clientes_VisitasEntry.TABLE_NAME,
-                null,
-                clientes_visitas.toContentValues());
-
-        db.close();
-    }
-
-    public boolean updateClientes_Visitas(SQLiteDatabase db, Clientes_Visitas clientes_visitas) {
-
-        boolean update = false;
-
-        // 3. updating row
-        int i = db.update(
-                Clientes_VisitasConstract.Clientes_VisitasEntry.TABLE_NAME,
-                null,
-                Clientes_VisitasConstract.Clientes_VisitasEntry.ID + " = ?", // selections
-                new String[]{String.valueOf(clientes_visitas.getID())}); //selection args
-
-        // 4. close
-        db.close();
-
-        if (i != 0) {
-            update = true;
-        }
-
-        return update;
-
-    }
-
-    public void deleteClientes_Visitas(SQLiteDatabase db, Clientes_Visitas clientes_visitas) {
-
-        // 2. delete
-        db.delete(
-                Clientes_VisitasConstract.Clientes_VisitasEntry.TABLE_NAME,
-                Clientes_VisitasConstract.Clientes_VisitasEntry.ID + " = ?", // selections
-                new String[]{String.valueOf(clientes_visitas.getID())}); //selections args
-
-        // 3. close
-        db.close();
-
-    }
-
-
-    public Cursor allClientes_Visitas() {
-        return getReadableDatabase()
-                .query(
-                        Clientes_VisitasConstract.Clientes_VisitasEntry.TABLE_NAME,
-                        null,
-                        null,
-                        null,
-                        null,
-                        null,
-                        null);
-    }
-
-    public Cursor clientes_VisitasById(String cliente_visitasID) {
-        Cursor c = getReadableDatabase().query(
-                Clientes_VisitasConstract.Clientes_VisitasEntry.TABLE_NAME,
-                null,
-                Clientes_VisitasConstract.Clientes_VisitasEntry.ID + " LIKE ?",
-                new String[]{cliente_visitasID},
-                null,
-                null,
-                null);
-        return c;
-    }
-
-    public List<Clientes_Visitas> getAllClientes_Visitas(String clientes_VisitasS) {
-
-        List<Clientes_Visitas> cliente_visitasList = new LinkedList<Clientes_Visitas>();
-
-        // 1. build the query
-        String query = "SELECT  * FROM " + clientes_VisitasS;
-
-        // 2. get reference to writable DB
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery(query, null);
-
-        // 3. go over each row, build clientes and add it to list
-        Clientes_Visitas clientes_visitas = null;
-        if (cursor.moveToFirst()) {
-            do {
-                clientes_visitas = new Clientes_Visitas();
-                clientes_visitas.setID(Integer.parseInt(cursor.getString(0)));
-                clientes_visitas.setNombre(cursor.getString(1));
-                clientes_visitas.setTelefono(cursor.getString(2));
-                clientes_visitas.setDireccion(cursor.getString(3));
-                clientes_visitas.setCedula_Cliente(cursor.getString(4));
-
-
-                // Add clientes to clientes
-                cliente_visitasList.add(clientes_visitas);
-            } while (cursor.moveToNext());
-        }
-        // return books
-        return cliente_visitasList;
-    }
-
     public void insertRegistroPago(SQLiteDatabase db, RegistroPago registroPago){
 
         db.insert(
@@ -367,7 +252,7 @@ public class ConexionHelper extends SQLiteOpenHelper {
                 null,
                 registroPago.toContentValues());
 
-        db.close();
+
     }
 
     public boolean updateRegistroPago(SQLiteDatabase db, RegistroPago registroPago) {
@@ -382,7 +267,7 @@ public class ConexionHelper extends SQLiteOpenHelper {
                 new String[] { String.valueOf(registroPago.getID()) }); //selection args
 
         // 4. close
-        db.close();
+
 
         if (i != 0) {
             update = true;
@@ -401,7 +286,7 @@ public class ConexionHelper extends SQLiteOpenHelper {
                 new String[] { String.valueOf(registroPago.getID()) }); //selections args
 
         // 3. close
-        db.close();
+
 
     }
 
@@ -467,7 +352,7 @@ public class ConexionHelper extends SQLiteOpenHelper {
                 null,
                 tarjetas.toContentValues());
 
-        db.close();
+
     }
 
     public boolean updateTarjetas(SQLiteDatabase db, Tarjetas tarjetas) {
@@ -481,8 +366,7 @@ public class ConexionHelper extends SQLiteOpenHelper {
                 TarjetasConstract.TarjetasEntry.ID +" = ?", // selections
                 new String[] { String.valueOf(tarjetas.getID()) }); //selection args
 
-        // 4. close
-        db.close();
+
 
         if (i != 0) {
             update = true;
@@ -501,7 +385,7 @@ public class ConexionHelper extends SQLiteOpenHelper {
                 new String[] { String.valueOf(tarjetas.getID()) }); //selections args
 
         // 3. close
-        db.close();
+
 
     }
 

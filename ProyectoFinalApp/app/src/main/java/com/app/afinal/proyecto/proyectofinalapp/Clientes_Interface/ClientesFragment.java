@@ -22,7 +22,7 @@ public class ClientesFragment extends Fragment {
 
     private ListView mClientesList;
     private ClientesCursorAdapter mClientesAdapter;
-    private FloatingActionButton mAddButton;
+
 
     public ClientesFragment() {
         // Required empty public constructor
@@ -40,18 +40,16 @@ public class ClientesFragment extends Fragment {
 
         View root = inflater.inflate(R.layout.fragment_clientes, container, false);
 
-
-        // Instancia de helper
-        mConexionDbHelper = new ConexionHelper(getActivity());
-
         // Referencias UI
         mClientesList = (ListView) root.findViewById(R.id.clientes_list);
         mClientesAdapter = new ClientesCursorAdapter(getActivity(), null);
-        mAddButton = (FloatingActionButton) getActivity().findViewById(R.id.fab);
 
         // Setup
         mClientesList.setAdapter(mClientesAdapter);
 
+
+        // Instancia de helper
+        mConexionDbHelper = new ConexionHelper(getActivity());
 
         // Carga de datos
         allClientes();
@@ -66,7 +64,7 @@ public class ClientesFragment extends Fragment {
     }
 
 
-    /*private class ClientesLoadTask extends AsyncTask<Void, Void,Cursor> {
+    private class ClientesLoadTask extends AsyncTask<Void, Void, Cursor> {
         @Override
         protected Cursor doInBackground(Void... params) {
             return mConexionDbHelper.allClientes();
@@ -75,16 +73,17 @@ public class ClientesFragment extends Fragment {
         @Override
         protected void onPostExecute(Cursor cursor) {
             if (cursor != null && cursor.getCount() > 0) {
-                mClientesAdapter.swapCursor( mConexionDbHelper.allClientes());
+                mClientesAdapter.swapCursor(cursor);
             } else {
                 // Mostrar empty state
             }
         }
-    }*/
+    }
+
     public void allClientes() {
 
-        mClientesAdapter.swapCursor( mConexionDbHelper.allClientes());
-   // new ClientesLoadTask().execute();
+        //mClientesAdapter.swapCursor( mConexionDbHelper.allClientes());
+        new ClientesLoadTask().execute();
 
     }
 

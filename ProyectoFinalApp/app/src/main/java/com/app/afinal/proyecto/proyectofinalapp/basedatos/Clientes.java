@@ -11,32 +11,44 @@ import  com.app.afinal.proyecto.proyectofinalapp.basedatos.ModeladoDB.ClientesCo
 public class Clientes {
 
     private int ID;
+    private String Nombre;
     private String Cedula_Cliente;
-    private float Salario;
     private String LugarTrabajo;
+    private float Salario;
+    private String Telefono;
+    private String Direccion;
     private String Fotografia;
+
+
+
 
     public Clientes() {
     }
 
-    public Clientes(int ID, String Cedula_Cliente, float salario, String lugarTrabajo, String fotografia) {
+    public Clientes(int ID, String nombre, String cedula_Cliente, String lugarTrabajo, float salario, String telefono, String direccion, String fotografia) {
         this.ID = ID;
-        Cedula_Cliente = Cedula_Cliente;
-        Salario = salario;
+        Nombre = nombre;
+        Cedula_Cliente = cedula_Cliente;
         LugarTrabajo = lugarTrabajo;
+        Salario = salario;
+        Telefono = telefono;
+        Direccion = direccion;
         Fotografia = fotografia;
     }
-
 
     public ContentValues toContentValues() {
 
         ContentValues values = new ContentValues();
 
         values.put(ClientesConstract.ClientesEntry.ID, ID);
-        values.put(ClientesConstract.ClientesEntry.ID, Cedula_Cliente);
-        values.put(ClientesConstract.ClientesEntry.ID, Salario);
-        values.put(ClientesConstract.ClientesEntry.ID, LugarTrabajo);
-        values.put(ClientesConstract.ClientesEntry.ID, Fotografia);
+        values.put(ClientesConstract.ClientesEntry.Nombre, Nombre);
+        values.put(ClientesConstract.ClientesEntry.Cedula_Cliente, Cedula_Cliente);
+        values.put(ClientesConstract.ClientesEntry.LugarTrabajo, LugarTrabajo);
+        values.put(ClientesConstract.ClientesEntry.Salario, Salario);
+        values.put(ClientesConstract.ClientesEntry.Telefono, Telefono);
+        values.put(ClientesConstract.ClientesEntry.Direccion, Direccion);
+        values.put(ClientesConstract.ClientesEntry.Cedula_Cliente, Cedula_Cliente);
+        values.put(ClientesConstract.ClientesEntry.Fotografia, Fotografia);
 
         return values;
     }
@@ -50,20 +62,20 @@ public class Clientes {
         this.ID = ID;
     }
 
+    public String getNombre() {
+        return Nombre;
+    }
+
+    public void setNombre(String nombre) {
+        Nombre = nombre;
+    }
+
     public String getCedula_Cliente() {
         return Cedula_Cliente;
     }
 
-    public void setCedula_Cliente(String identificacion) {
-        Cedula_Cliente = identificacion;
-    }
-
-    public float getSalario() {
-        return Salario;
-    }
-
-    public void setSalario(float salario) {
-        Salario = salario;
+    public void setCedula_Cliente(String cedula_Cliente) {
+        Cedula_Cliente = cedula_Cliente;
     }
 
     public String getLugarTrabajo() {
@@ -74,6 +86,30 @@ public class Clientes {
         LugarTrabajo = lugarTrabajo;
     }
 
+    public float getSalario() {
+        return Salario;
+    }
+
+    public void setSalario(float salario) {
+        Salario = salario;
+    }
+
+    public String getTelefono() {
+        return Telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        Telefono = telefono;
+    }
+
+    public String getDireccion() {
+        return Direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        Direccion = direccion;
+    }
+
     public String getFotografia() {
         return Fotografia;
     }
@@ -81,7 +117,4 @@ public class Clientes {
     public void setFotografia(String fotografia) {
         Fotografia = fotografia;
     }
-
-
-
 }

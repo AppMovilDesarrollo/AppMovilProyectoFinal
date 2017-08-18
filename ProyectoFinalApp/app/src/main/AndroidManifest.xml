@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.app.afinal.proyecto.proyectofinalapp">
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -17,11 +19,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".PantallaConfiguracion" />
-        <activity android:name=".DetallesCliente" />
+        <activity android:name=".DetallesClienteAndres" />
         <activity android:name=".Clientes_Interface.ClientesActivity" />
-
+        <activity
+            android:name=".Clientes_Interface.Clientes_Detalles.DetallesClientesActivity"
+            android:label="@string/title_activity_detalles_clientes"
+            android:theme="@style/AppTheme"></activity>
     </application>
-
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
 </manifest>

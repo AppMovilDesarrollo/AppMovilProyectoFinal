@@ -12,7 +12,7 @@ public class TarjetasConstract {
         public static final String TABLE_NAME = "Tarjetas";
 
 
-        public static final String ID = "ID";
+        public static final String ID = "_id";
         public static final String Cedula_Cliente = "Cedula_Cliente";
         public static final String NumeroTarjeta = "NumeroTarjeta";
         public static final String FechaVencimiento = "FechaVencimiento";
