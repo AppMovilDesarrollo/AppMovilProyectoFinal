@@ -40,6 +40,10 @@ public class ClientesFragment extends Fragment {
 
         View root = inflater.inflate(R.layout.fragment_clientes, container, false);
 
+
+        // Instancia de helper
+        mConexionDbHelper = new ConexionHelper(getActivity());
+
         // Referencias UI
         mClientesList = (ListView) root.findViewById(R.id.clientes_list);
         mClientesAdapter = new ClientesCursorAdapter(getActivity(), null);
@@ -48,8 +52,6 @@ public class ClientesFragment extends Fragment {
         // Setup
         mClientesList.setAdapter(mClientesAdapter);
 
-        // Instancia de helper
-        mConexionDbHelper = new ConexionHelper(getActivity());
 
         // Carga de datos
         allClientes();
@@ -64,7 +66,7 @@ public class ClientesFragment extends Fragment {
     }
 
 
-    private class ClientesLoadTask extends AsyncTask<Void, Void,Cursor> {
+    /*private class ClientesLoadTask extends AsyncTask<Void, Void,Cursor> {
         @Override
         protected Cursor doInBackground(Void... params) {
             return mConexionDbHelper.allClientes();
@@ -73,15 +75,16 @@ public class ClientesFragment extends Fragment {
         @Override
         protected void onPostExecute(Cursor cursor) {
             if (cursor != null && cursor.getCount() > 0) {
-                mClientesAdapter.swapCursor(cursor);
+                mClientesAdapter.swapCursor( mConexionDbHelper.allClientes());
             } else {
                 // Mostrar empty state
             }
         }
-    }
+    }*/
     public void allClientes() {
 
-    new ClientesLoadTask().execute();
+        mClientesAdapter.swapCursor( mConexionDbHelper.allClientes());
+   // new ClientesLoadTask().execute();
 
     }
 

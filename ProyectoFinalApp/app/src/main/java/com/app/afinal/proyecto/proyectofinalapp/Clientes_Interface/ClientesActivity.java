@@ -12,8 +12,9 @@ public class ClientesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clientes);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+
+
+        setSupportActionBar((Toolbar) findViewById(R.id.herbar));
 
         ClientesFragment fragment = (ClientesFragment)
                 getSupportFragmentManager().findFragmentById(R.id.clientes_container);

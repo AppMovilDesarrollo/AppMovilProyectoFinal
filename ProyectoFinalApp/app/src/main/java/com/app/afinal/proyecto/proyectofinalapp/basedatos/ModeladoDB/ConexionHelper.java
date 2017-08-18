@@ -30,10 +30,10 @@ public class ConexionHelper extends SQLiteOpenHelper {
 
 
 
-    private static String DB_PATH = "com/app/afinal/proyecto/proyectofinalapp/basedatos/";
-    private static String DB_NAME = "proyectofinal.db";
-    private SQLiteDatabase myDataBase;
-    private final Context myContext;
+   // private static String DB_PATH = "/data/data/com.app.afinal.proyecto.proyectofinalapp/databases/";
+    //private static String DB_NAME = "proyectofinal";
+    //private SQLiteDatabase myDataBase;
+    //private final Context myContext;
 
     // Database Version
     private static final int DATABASE_VERSION = 1;
@@ -42,19 +42,113 @@ public class ConexionHelper extends SQLiteOpenHelper {
 
     public ConexionHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
-        myContext = context;
+       // myContext = context;
+       // try {
+         //   createDataBase();
+           // openDataBase();
+        //} catch (IOException e) {
+            // TODO Auto-generated catch block
+          //  e.printStackTrace();
+        //}
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        try {
-            createDataBase();
-            openDataBase();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        db.execSQL("CREATE TABLE "+ TarjetasConstract.TarjetasEntry.TABLE_NAME+ "("
+                +TarjetasConstract.TarjetasEntry.ID+	"INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,"
+                +TarjetasConstract.TarjetasEntry.Cedula_Cliente+	"NUMERIC NOT NULL,"
+                +TarjetasConstract.TarjetasEntry.NumeroTarjeta+	"NUMERIC NOT NULL,"
+                +TarjetasConstract.TarjetasEntry.FechaVencimiento+	"TEXT NOT NULL,"
+                +TarjetasConstract.TarjetasEntry.TipoTarjeta+	"INTEGER NOT NULL+)");
+
+        Tarjetas tarjetas1 = new Tarjetas();
+        tarjetas1.setID(1);
+        tarjetas1.setCedula_Cliente("604150516");
+        tarjetas1.setNumeroTarjeta("4152779504604072");
+        tarjetas1.setFechaVencimiento("07/12");
+        tarjetas1.setTipoTarjeta(1);
+
+        Tarjetas tarjetas2 = new Tarjetas();
+        tarjetas2.setID(2);
+        tarjetas2.setCedula_Cliente("604110437");
+        tarjetas2.setNumeroTarjeta("4152046077954040");
+        tarjetas2.setFechaVencimiento("07/12");
+        tarjetas2.setTipoTarjeta(1);
+
+        insertTarjetas(db,tarjetas1);
+        insertTarjetas(db,tarjetas2);
+
+        db.execSQL("CREATE TABLE"+ RegistroPagoConstract.RegistroPagoEntry.TABLE_NAME+" ("
+                +RegistroPagoConstract.RegistroPagoEntry.ID	+"INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,"
+                +RegistroPagoConstract.RegistroPagoEntry.Cedula_Cliente	+"NUMERIC NOT NULL,"
+                +RegistroPagoConstract.RegistroPagoEntry.Monto	+"NUMERIC NOT NULL,"
+                +RegistroPagoConstract.RegistroPagoEntry.Tarjeta_ID	+"INTEGER NOT NULL)");
+
+        RegistroPago registroPago1 = new RegistroPago();
+
+        registroPago1.setID(1);
+        registroPago1.setCedula_Cliente("604150516");
+        registroPago1.setMonto(50000);
+        registroPago1.setTarjeta_ID(1);
+
+        RegistroPago registroPago2 = new RegistroPago();
+        registroPago2.setID(2);
+        registroPago2.setCedula_Cliente("604110437");
+        registroPago2.setMonto(12000);
+        registroPago2.setTarjeta_ID(2);
+
+        insertRegistroPago(db,registroPago1);
+        insertRegistroPago(db,registroPago2);
+
+        db.execSQL("CREATE TABLE "+ Clientes_VisitasConstract.Clientes_VisitasEntry.TABLE_NAME +" ("
+                +Clientes_VisitasConstract.Clientes_VisitasEntry.ID	+"INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,"
+                +Clientes_VisitasConstract.Clientes_VisitasEntry.Nombre	+"TEXT NOT NULL,"
+                +Clientes_VisitasConstract.Clientes_VisitasEntry.Telefono	+"TEXT NOT NULL,"
+                +Clientes_VisitasConstract.Clientes_VisitasEntry.Direccion	+"TEXT NOT NULL,"
+                +Clientes_VisitasConstract.Clientes_VisitasEntry.Cedula_Cliente	+"NUMERIC NOT NULL)");
+
+        Clientes_Visitas cv1 = new Clientes_Visitas();
+        cv1.setID(1);
+        cv1.setNombre("Jeison Andres Cespedes Morales");
+        cv1.setTelefono("+50685978859");
+        cv1.setDireccion("Heredia, Heredia, Corazon de Jesus");
+        cv1.setCedula_Cliente("604150516");
+
+        Clientes_Visitas cv2 = new Clientes_Visitas();
+        cv2.setID(2);
+        cv2.setNombre("Yensy Vannessa Cespedes Morales");
+        cv2.setTelefono("+50683735557");
+        cv2.setDireccion("Heredia, Heredia, Corazon de Jesus");
+        cv2.setCedula_Cliente("604110437");
+
+        insertClientes_Visitas(db,cv1);
+        insertClientes_Visitas(db,cv2);
+
+
+        db.execSQL("CREATE TABLE "+ ClientesConstract.ClientesEntry.TABLE_NAME+" ("
+                +ClientesConstract.ClientesEntry.ID	+"INTEGER PRIMARY KEY AUTOINCREMENT,"
+                +ClientesConstract.ClientesEntry.Cedula_Cliente	+"NUMERIC NOT NULL UNIQUE,"
+                +ClientesConstract.ClientesEntry.Salario	+"NUMERIC DEFAULT 0,"
+                +ClientesConstract.ClientesEntry.LugarTrabajo	+"TEXT NOT NULL,"
+                +ClientesConstract.ClientesEntry.Fotografia	+"TEXT NOT NULL)");
+
+        Clientes c1 = new Clientes();
+        c1.setID(1);
+        c1.setCedula_Cliente("604150516");
+        c1.setSalario(1000000);
+        c1.setLugarTrabajo("Grupo Mutual Alajuela");
+        c1.setFotografia("Foto1.jpg");
+        
+        Clientes c2 = new Clientes();
+        c2.setID(2);
+        c2.setCedula_Cliente("604110437");
+        c2.setSalario(50000);
+        c2.setLugarTrabajo("Estudiante");
+        c2.setFotografia("Foto2.jpg");
+
+        insertClientes(db,c1);
+        insertClientes(db,c2);
 
     }
 
@@ -154,7 +248,7 @@ public class ConexionHelper extends SQLiteOpenHelper {
                 cliente.setCedula_Cliente(cursor.getString(1));
                 cliente.setSalario(Float.parseFloat(cursor.getString(2)));
                 cliente.setLugarTrabajo(cursor.getString(3));
-                cliente.setFotografia(Integer.parseInt(cursor.getString(4)));
+                cliente.setFotografia(cursor.getString(4));
 
                 // Add clientes to clientes
                 clienteList.add(cliente);
@@ -466,7 +560,7 @@ public class ConexionHelper extends SQLiteOpenHelper {
         // return books
         return tarjetasIDList;
     }
-
+/*
     public void createDataBase() throws IOException {
 
         boolean dbExist = checkDataBase();
@@ -515,7 +609,7 @@ public class ConexionHelper extends SQLiteOpenHelper {
 
 // Open the database
         String myPath = DB_PATH + DB_NAME;
-        myDataBase = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
+        myDataBase = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READWRITE);
 
     }
 
@@ -547,5 +641,5 @@ public class ConexionHelper extends SQLiteOpenHelper {
     }
 
 
-
+*/
 }

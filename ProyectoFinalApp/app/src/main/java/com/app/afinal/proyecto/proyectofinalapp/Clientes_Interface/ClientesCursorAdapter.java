@@ -26,9 +26,6 @@ import com.bumptech.glide.request.target.BitmapImageViewTarget;
 public class ClientesCursorAdapter extends CursorAdapter {
 
 
-
-    SimpleCursorAdapter mClientesAdapter;
-
     public ClientesCursorAdapter(Context context, Cursor c) {
         super(context, c, 0);
     }
@@ -44,15 +41,16 @@ public class ClientesCursorAdapter extends CursorAdapter {
 
         // Referencias UI.
         TextView nameText = (TextView) view.findViewById(R.id.tv_name);
-        final ImageView avatarImage = (ImageView) view.findViewById(R.id.iv_avatar);
+        TextView iv_avatar = (TextView) view.findViewById(R.id.iv_avatar);
 
         // Get valores.
         String name = cursor.getString(cursor.getColumnIndex(Clientes_VisitasConstract.Clientes_VisitasEntry.Nombre));
-
+        String id = cursor.getString(cursor.getColumnIndex(Clientes_VisitasConstract.Clientes_VisitasEntry.ID));
 
         // Setup.
         nameText.setText(name);
-        ;
+        iv_avatar.setText(id);
+
 
     }
 }

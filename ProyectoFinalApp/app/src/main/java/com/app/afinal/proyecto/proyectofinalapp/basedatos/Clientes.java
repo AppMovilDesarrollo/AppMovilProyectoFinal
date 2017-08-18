@@ -14,12 +14,12 @@ public class Clientes {
     private String Cedula_Cliente;
     private float Salario;
     private String LugarTrabajo;
-    private int Fotografia;
+    private String Fotografia;
 
     public Clientes() {
     }
 
-    public Clientes(int ID, String Cedula_Cliente, float salario, String lugarTrabajo, int fotografia) {
+    public Clientes(int ID, String Cedula_Cliente, float salario, String lugarTrabajo, String fotografia) {
         this.ID = ID;
         Cedula_Cliente = Cedula_Cliente;
         Salario = salario;
@@ -74,11 +74,11 @@ public class Clientes {
         LugarTrabajo = lugarTrabajo;
     }
 
-    public int getFotografia() {
+    public String getFotografia() {
         return Fotografia;
     }
 
-    public void setFotografia(int fotografia) {
+    public void setFotografia(String fotografia) {
         Fotografia = fotografia;
     }
 
