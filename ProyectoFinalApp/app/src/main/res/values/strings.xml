@@ -16,6 +16,17 @@
     <string name="txtDForm">Llenar el Formulario</string>
     <string name="btnSave.Content">Guardar</string>
     <string name="title_activity_clientes">ClientesActivity</string>
+    <string name="txtFormu">Formulario</string>
+    <string name="txtSalary">Salario</string>
+    <string name="txtLugTra">Lugar de Trabajo</string>
+    <string name="txtNumTar">Número de Tarjeta</string>
+    <string name="txtSecCod">Codigo de Seguridad</string>
+    <string name="txtExpDat">Fecha de Expiración</string>
+    <string name="txtTipo">Tipo de Tarjeta</string>
+    <string name="txtMonto">Monto</string>
+    <string name="txtPago">Transaccion</string>
+    <string name="txtProcesar">Procesar</string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

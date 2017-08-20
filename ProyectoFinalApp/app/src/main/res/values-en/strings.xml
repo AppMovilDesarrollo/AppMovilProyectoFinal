@@ -15,4 +15,15 @@
     <string name="txtDDir">Address:</string>
     <string name="txtDForm">Complete the Form</string>
     <string name="btnSave.Content">Save</string>
+    <string name="txtFormu">Formulary</string>
+    <string name="txtSalary">Salary</string>
+    <string name="txtLugTra">Workplace</string>
+    <string name="txtNumTar">Card Number</string>
+    <string name="txtSecCod">Security Code</string>
+    <string name="txtExpDat">Expire Date</string>
+    <string name="txtTipo">Card Type</string>
+    <string name="txtMonto">Amount</string>
+    <string name="txtPago">Transaction</string>
+    <string name="txtProcesar">Process</string>
+
 </resources>

@@ -24,7 +24,9 @@
         <activity
             android:name=".Clientes_Interface.Clientes_Detalles.DetallesClientesActivity"
             android:label="@string/title_activity_detalles_clientes"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+        <activity android:name=".Formulario" />
+        <activity android:name=".Tarjeta"></activity>
     </application>
 
 </manifest>
