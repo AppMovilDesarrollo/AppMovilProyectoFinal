@@ -25,5 +25,6 @@
     <string name="txtMonto">Amount</string>
     <string name="txtPago">Transaction</string>
     <string name="txtProcesar">Process</string>
+    <string name="msjSave">Saved Client!</string>
 
 </resources>

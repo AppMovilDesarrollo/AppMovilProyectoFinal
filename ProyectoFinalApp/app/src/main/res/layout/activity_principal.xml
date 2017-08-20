@@ -43,7 +43,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30sp"
                 android:layout_marginLeft="95sp"
-                android:onClick="callDetallesCliente"
                 android:text="@string/btnDetCli.Content"
                 android:textAlignment="center"
                 tools:layout_editor_absoluteX="0dp"

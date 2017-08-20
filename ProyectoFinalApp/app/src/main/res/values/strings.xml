@@ -26,7 +26,7 @@
     <string name="txtMonto">Monto</string>
     <string name="txtPago">Transaccion</string>
     <string name="txtProcesar">Procesar</string>
-
+    <string name="msjSave">Cliente Guardado!</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

@@ -37,9 +37,6 @@ public class PrincipalActivity extends AppCompatActivity {
 
 
         setContentView(R.layout.activity_principal);
-    }
-
-    public void callDetallesCliente(View view) {
 
         Button button = (Button) findViewById(R.id.btnDetCli);
 
@@ -50,6 +47,11 @@ public class PrincipalActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+    }
+
+    public void callPantallaConfiguracion(View view) {
+        Intent i= new Intent(getBaseContext(), PantallaConfiguracion.class);
+        startActivity(i);
     }
 
     @Override
