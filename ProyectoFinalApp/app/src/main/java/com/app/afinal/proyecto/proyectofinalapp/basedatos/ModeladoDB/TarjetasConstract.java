@@ -16,6 +16,7 @@ public class TarjetasConstract {
         public static final String Cedula_Cliente = "Cedula_Cliente";
         public static final String NumeroTarjeta = "NumeroTarjeta";
         public static final String FechaVencimiento = "FechaVencimiento";
+        public static final String Monto = "Monto";
         public static final String TipoTarjeta = "TipoTarjeta";
 
 

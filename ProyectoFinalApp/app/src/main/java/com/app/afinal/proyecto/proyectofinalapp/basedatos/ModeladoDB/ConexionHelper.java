@@ -1,4 +1,4 @@
-package  com.app.afinal.proyecto.proyectofinalapp.basedatos.ModeladoDB;
+package com.app.afinal.proyecto.proyectofinalapp.basedatos.ModeladoDB;
 
 import java.util.List;
 import java.util.LinkedList;
@@ -8,9 +8,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import  com.app.afinal.proyecto.proyectofinalapp.basedatos.Clientes;
-import  com.app.afinal.proyecto.proyectofinalapp.basedatos.RegistroPago;
-import  com.app.afinal.proyecto.proyectofinalapp.basedatos.Tarjetas;
+import com.app.afinal.proyecto.proyectofinalapp.basedatos.Clientes;
+import com.app.afinal.proyecto.proyectofinalapp.basedatos.Tarjetas;
 
 
 /**
@@ -20,9 +19,7 @@ import  com.app.afinal.proyecto.proyectofinalapp.basedatos.Tarjetas;
 public class ConexionHelper extends SQLiteOpenHelper {
 
 
-
-
-   // private static String DB_PATH = "/data/data/com.app.afinal.proyecto.proyectofinalapp/databases/";
+   // private static String myPath = "/data/user/0/com.app.afinal.proyecto.proyectofinalapp/databases/proyectofinal.db";
     //private static String DB_NAME = "proyectofinal";
     //private SQLiteDatabase myDataBase;
     //private final Context myContext;
@@ -34,76 +31,55 @@ public class ConexionHelper extends SQLiteOpenHelper {
 
     public ConexionHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
-       // myContext = context;
-       // try {
-         //   createDataBase();
-           // openDataBase();
+        // myContext = context;
+        // try {
+        //   createDataBase();
+        // openDataBase();
         //} catch (IOException e) {
-            // TODO Auto-generated catch block
-          //  e.printStackTrace();
+        // TODO Auto-generated catch block
+        //  e.printStackTrace();
         //}
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        db.execSQL("CREATE TABLE "+ TarjetasConstract.TarjetasEntry.TABLE_NAME+ "("
-                +TarjetasConstract.TarjetasEntry.ID+	" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,"
-                +TarjetasConstract.TarjetasEntry.Cedula_Cliente+	" NUMERIC NOT NULL,"
-                +TarjetasConstract.TarjetasEntry.NumeroTarjeta+	" NUMERIC NOT NULL,"
-                +TarjetasConstract.TarjetasEntry.FechaVencimiento+	" TEXT NOT NULL,"
-                +TarjetasConstract.TarjetasEntry.TipoTarjeta+	" INTEGER NOT NULL)");
-
-        Tarjetas tarjetas1 = new Tarjetas();
-        tarjetas1.setID(1);
-        tarjetas1.setCedula_Cliente("604150516");
-        tarjetas1.setNumeroTarjeta("4152779504604072");
-        tarjetas1.setFechaVencimiento("07/12");
-        tarjetas1.setTipoTarjeta(1);
-
-        Tarjetas tarjetas2 = new Tarjetas();
-        tarjetas2.setID(2);
-        tarjetas2.setCedula_Cliente("604110437");
-        tarjetas2.setNumeroTarjeta("4152046077954040");
-        tarjetas2.setFechaVencimiento("07/12");
-        tarjetas2.setTipoTarjeta(1);
-
-        insertTarjetas(db,tarjetas1);
-        insertTarjetas(db,tarjetas2);
-
-        db.execSQL("CREATE TABLE "+ RegistroPagoConstract.RegistroPagoEntry.TABLE_NAME+" ("
-                +RegistroPagoConstract.RegistroPagoEntry.ID	+" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,"
-                +RegistroPagoConstract.RegistroPagoEntry.Cedula_Cliente	+" NUMERIC NOT NULL,"
-                +RegistroPagoConstract.RegistroPagoEntry.Monto	+" NUMERIC NOT NULL,"
-                +RegistroPagoConstract.RegistroPagoEntry.Tarjeta_ID	+" INTEGER NOT NULL)");
-
-        RegistroPago registroPago1 = new RegistroPago();
-
-        registroPago1.setID(1);
-        registroPago1.setCedula_Cliente("604150516");
-        registroPago1.setMonto(50000);
-        registroPago1.setTarjeta_ID(1);
-
-        RegistroPago registroPago2 = new RegistroPago();
-        registroPago2.setID(2);
-        registroPago2.setCedula_Cliente("604110437");
-        registroPago2.setMonto(12000);
-        registroPago2.setTarjeta_ID(2);
-
-        insertRegistroPago(db,registroPago1);
-        insertRegistroPago(db,registroPago2);
-
-        db.execSQL("CREATE TABLE "+ ClientesConstract.ClientesEntry.TABLE_NAME+" ("
-                +ClientesConstract.ClientesEntry.ID	+" INTEGER PRIMARY KEY AUTOINCREMENT,"
-                +ClientesConstract.ClientesEntry.Nombre	+" TEXT NOT NULL,"
-                +ClientesConstract.ClientesEntry.Cedula_Cliente	+" NUMERIC NOT NULL UNIQUE,"
-                +ClientesConstract.ClientesEntry.LugarTrabajo	+" TEXT NOT NULL,"
-                +ClientesConstract.ClientesEntry.Salario	+" NUMERIC DEFAULT 0,"
-                +ClientesConstract.ClientesEntry.Telefono	+" TEXT NOT NULL,"
-                +ClientesConstract.ClientesEntry.Direccion	+" TEXT NOT NULL,"
-                +ClientesConstract.ClientesEntry.Fotografia	+" TEXT NOT NULL)");
+        db.execSQL("CREATE TABLE " + TarjetasConstract.TarjetasEntry.TABLE_NAME + "("
+                + TarjetasConstract.TarjetasEntry.ID + " INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,"
+                + TarjetasConstract.TarjetasEntry.Cedula_Cliente + " TEXT NOT NULL,"
+                + TarjetasConstract.TarjetasEntry.NumeroTarjeta + " TEXT NOT NULL,"
+                + TarjetasConstract.TarjetasEntry.FechaVencimiento + " TEXT NOT NULL,"
+                + TarjetasConstract.TarjetasEntry.Monto + " NUMERIC NOT NULL,"
+                + TarjetasConstract.TarjetasEntry.TipoTarjeta + " INTEGER NOT NULL)");
 
 
+        db.execSQL("CREATE TABLE " + ClientesConstract.ClientesEntry.TABLE_NAME + " ("
+                + ClientesConstract.ClientesEntry.ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + ClientesConstract.ClientesEntry.Nombre + " TEXT NOT NULL,"
+                + ClientesConstract.ClientesEntry.Cedula_Cliente + " NUMERIC NOT NULL UNIQUE,"
+                + ClientesConstract.ClientesEntry.LugarTrabajo + " TEXT,"
+                + ClientesConstract.ClientesEntry.Salario + " NUMERIC DEFAULT 0,"
+                + ClientesConstract.ClientesEntry.Telefono + " TEXT NOT NULL,"
+                + ClientesConstract.ClientesEntry.Direccion + " TEXT NOT NULL,"
+                + ClientesConstract.ClientesEntry.Fotografia + " TEXT)");
+
+
+        createTarjetas(db);
+        createClientes(db);
+    }
+
+
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+
+        db.execSQL("DROP TABLE IF EXISTS " + ClientesConstract.ClientesEntry.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + TarjetasConstract.TarjetasEntry.TABLE_NAME);
+
+        this.onCreate(db);
+    }
+
+
+    public void createClientes(SQLiteDatabase db) {
 
         Clientes c1 = new Clientes();
         c1.setID(1);
@@ -129,22 +105,51 @@ public class ConexionHelper extends SQLiteOpenHelper {
         c2.setCedula_Cliente("604110437");
 
 
-        insertClientes(db,c1);
-        insertClientes(db,c2);
+        db.insert(
+                ClientesConstract.ClientesEntry.TABLE_NAME,
+                null,
+                c1.toContentValues());
+
+
+        db.insert(
+                ClientesConstract.ClientesEntry.TABLE_NAME,
+                null,
+                c2.toContentValues());
 
     }
 
-    @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+    public void createTarjetas(SQLiteDatabase db) {
 
-        db.execSQL("DROP TABLE IF EXISTS " + ClientesConstract.ClientesEntry.TABLE_NAME);
-        db.execSQL("DROP TABLE IF EXISTS " + RegistroPagoConstract.RegistroPagoEntry.TABLE_NAME);
-        db.execSQL("DROP TABLE IF EXISTS " + TarjetasConstract.TarjetasEntry.TABLE_NAME);
+        Tarjetas tarjetas1 = new Tarjetas();
+        tarjetas1.setID(1);
+        tarjetas1.setCedula_Cliente("604150516");
+        tarjetas1.setNumeroTarjeta("4152779504604072");
+        tarjetas1.setFechaVencimiento("07/12");
+        tarjetas1.setTipoTarjeta(1);
 
-        this.onCreate(db);
+        Tarjetas tarjetas2 = new Tarjetas();
+        tarjetas2.setID(2);
+        tarjetas2.setCedula_Cliente("604110437");
+        tarjetas2.setNumeroTarjeta("4152046077954040");
+        tarjetas2.setFechaVencimiento("07/12");
+        tarjetas2.setTipoTarjeta(1);
+
+        db.insert(
+                TarjetasConstract.TarjetasEntry.TABLE_NAME,
+                null,
+                tarjetas1.toContentValues());
+
+        db.insert(
+                TarjetasConstract.TarjetasEntry.TABLE_NAME,
+                null,
+                tarjetas2.toContentValues());
+
+
     }
 
-    public void insertClientes(SQLiteDatabase db, Clientes clientes) {
+    public void insertClientes(Clientes clientes) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
 
         db.insert(
                 ClientesConstract.ClientesEntry.TABLE_NAME,
@@ -190,7 +195,7 @@ public class ConexionHelper extends SQLiteOpenHelper {
     }
 
 
-    public  Cursor allClientes() {
+    public Cursor allClientes() {
         return getReadableDatabase()
                 .query(
                         ClientesConstract.ClientesEntry.TABLE_NAME,
@@ -245,107 +250,11 @@ public class ConexionHelper extends SQLiteOpenHelper {
     }
 
 
-    public void insertRegistroPago(SQLiteDatabase db, RegistroPago registroPago){
-
-        db.insert(
-                RegistroPagoConstract.RegistroPagoEntry.TABLE_NAME,
-                null,
-                registroPago.toContentValues());
+    public void insertTarjetas(Tarjetas tarjetas) {
 
 
-    }
-
-    public boolean updateRegistroPago(SQLiteDatabase db, RegistroPago registroPago) {
-
-        boolean update = false;
-
-        // 3. updating row
-        int i = db.update(
-                RegistroPagoConstract.RegistroPagoEntry.TABLE_NAME,
-                null,
-                RegistroPagoConstract.RegistroPagoEntry.ID +" = ?", // selections
-                new String[] { String.valueOf(registroPago.getID()) }); //selection args
-
-        // 4. close
-
-
-        if (i != 0) {
-            update = true;
-        }
-
-        return update;
-
-    }
-
-    public void deleteRegistroPago(SQLiteDatabase db, RegistroPago registroPago) {
-
-        // 2. delete
-        db.delete(
-                RegistroPagoConstract.RegistroPagoEntry.TABLE_NAME,
-                RegistroPagoConstract.RegistroPagoEntry.ID +" = ?", // selections
-                new String[] { String.valueOf(registroPago.getID()) }); //selections args
-
-        // 3. close
-
-
-    }
-
-
-    public Cursor allRegistroPago() {
-        return getReadableDatabase()
-                .query(
-                        RegistroPagoConstract.RegistroPagoEntry.TABLE_NAME,
-                        null,
-                        null,
-                        null,
-                        null,
-                        null,
-                        null);
-    }
-
-    public Cursor RegistroPagoById(String registroPagoID) {
-        Cursor c = getReadableDatabase().query(
-                RegistroPagoConstract.RegistroPagoEntry.TABLE_NAME,
-                null,
-                RegistroPagoConstract.RegistroPagoEntry.ID + " LIKE ?",
-                new String[]{registroPagoID},
-                null,
-                null,
-                null);
-        return c;
-    }
-
-    public List<RegistroPago> getAllRegistroPago(String RegistroPagoS) {
-
-        List<RegistroPago> registroPagoList = new LinkedList<RegistroPago>();
-
-        // 1. build the query
-        String query = "SELECT  * FROM " + RegistroPagoS;
-
-        // 2. get reference to writable DB
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery(query, null);
 
-        // 3. go over each row, build RegistroPago and add it to list
-        RegistroPago registroPago = null;
-        if (cursor.moveToFirst()) {
-            do {
-
-                registroPago = new RegistroPago();
-                registroPago.setID(Integer.parseInt(cursor.getString(0)));
-                registroPago.setCedula_Cliente(cursor.getString(1));
-                registroPago.setMonto(Float.parseFloat(cursor.getString(2)));
-                registroPago.setTarjeta_ID(Integer.parseInt(cursor.getString(3)));
-
-                // Add RegistroPago to RegistroPago
-                registroPagoList.add(registroPago);
-            } while (cursor.moveToNext());
-        }
-        // return books
-        return registroPagoList;
-    }
-
-    public void insertTarjetas(SQLiteDatabase db, Tarjetas tarjetas){
 
         db.insert(
                 TarjetasConstract.TarjetasEntry.TABLE_NAME,
@@ -363,9 +272,8 @@ public class ConexionHelper extends SQLiteOpenHelper {
         int i = db.update(
                 TarjetasConstract.TarjetasEntry.TABLE_NAME,
                 null,
-                TarjetasConstract.TarjetasEntry.ID +" = ?", // selections
-                new String[] { String.valueOf(tarjetas.getID()) }); //selection args
-
+                TarjetasConstract.TarjetasEntry.ID + " = ?", // selections
+                new String[]{String.valueOf(tarjetas.getID())}); //selection args
 
 
         if (i != 0) {
@@ -381,8 +289,8 @@ public class ConexionHelper extends SQLiteOpenHelper {
         // 2. delete
         db.delete(
                 TarjetasConstract.TarjetasEntry.TABLE_NAME,
-                TarjetasConstract.TarjetasEntry.ID +" = ?", // selections
-                new String[] { String.valueOf(tarjetas.getID()) }); //selections args
+                TarjetasConstract.TarjetasEntry.ID + " = ?", // selections
+                new String[]{String.valueOf(tarjetas.getID())}); //selections args
 
         // 3. close
 

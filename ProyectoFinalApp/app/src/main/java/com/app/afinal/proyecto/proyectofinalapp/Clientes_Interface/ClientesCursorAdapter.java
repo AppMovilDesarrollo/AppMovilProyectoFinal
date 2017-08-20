@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.app.afinal.proyecto.proyectofinalapp.R;
+import com.app.afinal.proyecto.proyectofinalapp.basedatos.Clientes;
 import com.app.afinal.proyecto.proyectofinalapp.basedatos.ModeladoDB.ClientesConstract;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
@@ -44,9 +45,13 @@ public class ClientesCursorAdapter extends CursorAdapter {
         TextView nameText = (TextView) view.findViewById(R.id.tv_name);
         final ImageView iv_avatar = (ImageView) view.findViewById(R.id.iv_avatar);
 
+        Clientes cliente = new Clientes(); //ASI SE DEBE CREAR EL OBJETO
         // Get valores.
         String name = cursor.getString(cursor.getColumnIndex(ClientesConstract.ClientesEntry.Nombre));
         String foto = cursor.getString(cursor.getColumnIndex(ClientesConstract.ClientesEntry.Fotografia));
+
+        cliente.setID(cursor.getInt(cursor.getColumnIndex(ClientesConstract.ClientesEntry.ID))); //ASI SE DEBEN AGREGAR LOS VALORES DEL CLIENTE DE LA BASE DE DATOS
+
 
         // Setup.
         nameText.setText(name);

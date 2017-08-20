@@ -3,6 +3,7 @@ package com.app.afinal.proyecto.proyectofinalapp.Clientes_Interface;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -13,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.app.afinal.proyecto.proyectofinalapp.R;
+import com.app.afinal.proyecto.proyectofinalapp.basedatos.Clientes;
 import com.app.afinal.proyecto.proyectofinalapp.basedatos.ModeladoDB.ConexionHelper;
 
 public class ClientesFragment extends Fragment {
@@ -67,6 +69,45 @@ public class ClientesFragment extends Fragment {
     private class ClientesLoadTask extends AsyncTask<Void, Void, Cursor> {
         @Override
         protected Cursor doInBackground(Void... params) {
+
+
+            Cursor cursor = mConexionDbHelper.allClientes();
+
+            Clientes clasdwa = new Clientes();
+            clasdwa.setID(cursor.getCount()+1);
+            clasdwa.setCedula_Cliente("123456");
+            clasdwa.setNombre("abcd");
+            clasdwa.setDireccion("a");
+            clasdwa.setTelefono("76554");
+
+            Clientes clasda = new Clientes();
+            clasda.setID(cursor.getCount()+2);
+            clasda.setCedula_Cliente("67890");
+            clasda.setNombre("efgh");
+            clasda.setDireccion("a");
+            clasda.setTelefono("76554");
+
+            Clientes claswdaa = new Clientes();
+            claswdaa.setID(cursor.getCount()+3);
+            claswdaa.setCedula_Cliente("23456");
+            claswdaa.setNombre("hijk");
+            claswdaa.setDireccion("a");
+            claswdaa.setTelefono("76554");
+
+            Clientes clasqda = new Clientes();
+            clasqda.setID(cursor.getCount()+4);
+            clasqda.setCedula_Cliente("56789");
+            clasqda.setNombre("lmno");
+            clasqda.setDireccion("a");
+            clasqda.setTelefono("76554");
+
+
+            mConexionDbHelper.insertClientes(clasdwa);
+            mConexionDbHelper.insertClientes(clasda);
+            mConexionDbHelper.insertClientes(claswdaa);
+            mConexionDbHelper.insertClientes(clasqda);
+
+
             return mConexionDbHelper.allClientes();
         }
 

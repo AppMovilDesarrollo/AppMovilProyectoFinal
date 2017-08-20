@@ -15,16 +15,18 @@ public class Tarjetas {
 	private String Cedula_Cliente;
     private String NumeroTarjeta;
     private String FechaVencimiento;
+    private double Monto;
     private int TipoTarjeta;
 
     public Tarjetas() {
     }
 
-    public Tarjetas(int ID, String cedula_Cliente, String numeroTarjeta, String fechaVencimiento, int tipoTarjeta) {
+    public Tarjetas(int ID, String cedula_Cliente, String numeroTarjeta, String fechaVencimiento, double monto, int tipoTarjeta) {
         this.ID = ID;
         Cedula_Cliente = cedula_Cliente;
         NumeroTarjeta = numeroTarjeta;
         FechaVencimiento = fechaVencimiento;
+        Monto = monto;
         TipoTarjeta = tipoTarjeta;
     }
 
@@ -37,6 +39,7 @@ public class Tarjetas {
         values.put(TarjetasConstract.TarjetasEntry.Cedula_Cliente, Cedula_Cliente);
         values.put(TarjetasConstract.TarjetasEntry.NumeroTarjeta, NumeroTarjeta);
         values.put(TarjetasConstract.TarjetasEntry.FechaVencimiento, FechaVencimiento);
+        values.put(TarjetasConstract.TarjetasEntry.Monto, Monto);
         values.put(TarjetasConstract.TarjetasEntry.TipoTarjeta, TipoTarjeta);
 
 
@@ -81,5 +84,14 @@ public class Tarjetas {
 
     public void setTipoTarjeta(int tipoTarjeta) {
         TipoTarjeta = tipoTarjeta;
+    }
+
+
+    public Double getMonto() {
+        return Monto;
+    }
+
+    public void setMonto(Double monto) {
+        Monto = monto;
     }
 }

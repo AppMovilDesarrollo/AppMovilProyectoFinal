@@ -14,7 +14,7 @@ public class Clientes {
     private String Nombre;
     private String Cedula_Cliente;
     private String LugarTrabajo;
-    private float Salario;
+    private double Salario;
     private String Telefono;
     private String Direccion;
     private String Fotografia;
@@ -25,7 +25,7 @@ public class Clientes {
     public Clientes() {
     }
 
-    public Clientes(int ID, String nombre, String cedula_Cliente, String lugarTrabajo, float salario, String telefono, String direccion, String fotografia) {
+    public Clientes(int ID, String nombre, String cedula_Cliente, String lugarTrabajo, double salario, String telefono, String direccion, String fotografia) {
         this.ID = ID;
         Nombre = nombre;
         Cedula_Cliente = cedula_Cliente;
@@ -86,11 +86,11 @@ public class Clientes {
         LugarTrabajo = lugarTrabajo;
     }
 
-    public float getSalario() {
+    public double getSalario() {
         return Salario;
     }
 
-    public void setSalario(float salario) {
+    public void setSalario(double salario) {
         Salario = salario;
     }
 
