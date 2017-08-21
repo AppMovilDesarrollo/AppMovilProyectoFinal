@@ -2,6 +2,7 @@ package com.app.afinal.proyecto.proyectofinalapp;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.app.afinal.proyecto.proyectofinalapp.Clientes_Interface.ClientesActivity;
 import com.app.afinal.proyecto.proyectofinalapp.basedatos.Clientes;
 import com.app.afinal.proyecto.proyectofinalapp.basedatos.ModeladoDB.ConexionHelper;
 
@@ -63,13 +65,16 @@ public class PantallaConfiguracion extends AppCompatActivity {
         final AlertDialog.Builder msjSave = new AlertDialog.Builder(this);
         msjSave.setTitle(getResources().getString(R.string.msjSave));
         //builder1.setMessage();
-        msjSave.setCancelable(true);
+        msjSave.setCancelable(false);
 
         msjSave.setPositiveButton(
                 "Aceptar",
                 new DialogInterface.OnClickListener(){
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.cancel();
+                        PantallaConfiguracion.this.finish();
+                        Intent i= new Intent(PantallaConfiguracion.this, ClientesActivity.class);
+                        startActivity(i);
                     }
                 });
       /*  msjSave.setNegativeButton(
