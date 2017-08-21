@@ -18,15 +18,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".PantallaConfiguracion" />
-        <activity android:name=".DetallesClienteAndres" />
-        <activity android:name=".PrincipalActivity" />
         <activity
             android:name=".Clientes_Interface.Clientes_Detalles.DetallesClientesActivity"
             android:label="@string/title_activity_detalles_clientes"
             android:theme="@style/AppTheme" />
         <activity android:name=".Formulario" />
-        <activity android:name=".Tarjeta"></activity>
+        <activity android:name=".Tarjeta" />
+        <activity
+            android:name=".Clientes_Interface.Clientes_Configuracion.ConfiguracionClientesActivity"
+            android:label="@string/title_activity_configuracion_clientes"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

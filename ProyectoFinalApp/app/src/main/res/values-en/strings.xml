@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ProyectoFinalApp</string>
+    <string name="app_name">Delivery Control</string>
     <string name="MainCli">Clients</string>
     <string name="btnDetCli.Content">Client Details</string>
     <string name="btnConfig.Content">Configuration</string>
@@ -26,5 +26,12 @@
     <string name="txtPago">Transaction</string>
     <string name="txtProcesar">Process</string>
     <string name="msjSave">Saved Client!</string>
+    <string name="btnCancel">Cancel</string>
+    <string name="strPantallaClientes">Clients</string>
+    <string name="strPantallaConfiguracionClientes">Add Clients</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_configuracion_clientes">ConfiguracionClientesActivity</string>
+    <string name="title_activity_detalles_clientes">Client details</string>
 
 </resources>

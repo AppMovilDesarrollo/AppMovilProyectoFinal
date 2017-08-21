@@ -40,31 +40,28 @@ public class ClientesCursorAdapter extends CursorAdapter {
     @Override
     public void bindView(View view, final Context context, Cursor cursor) {
 
-        final Context context1 = context;
         // Referencias UI.
-        TextView nameText = (TextView) view.findViewById(R.id.tv_name);
-        final ImageView iv_avatar = (ImageView) view.findViewById(R.id.iv_avatar);
+        TextView lNombreCliente = (TextView) view.findViewById(R.id.lNombreCliente);
+        final ImageView imgImagenCliente = (ImageView) view.findViewById(R.id.imgImagenCliente);
 
-        Clientes cliente = new Clientes(); //ASI SE DEBE CREAR EL OBJETO
+
         // Get valores.
         String name = cursor.getString(cursor.getColumnIndex(ClientesConstract.ClientesEntry.Nombre));
         String foto = cursor.getString(cursor.getColumnIndex(ClientesConstract.ClientesEntry.Fotografia));
 
-        cliente.setID(cursor.getInt(cursor.getColumnIndex(ClientesConstract.ClientesEntry.ID))); //ASI SE DEBEN AGREGAR LOS VALORES DEL CLIENTE DE LA BASE DE DATOS
-
 
         // Setup.
-        nameText.setText(name);
+        lNombreCliente.setText(name);
 
-        Glide.with(context1).load(Uri.parse("file://android_asset/" + foto)).asBitmap()
+        Glide.with(context).load(Uri.parse("file://android_asset/" + foto)).asBitmap()
                 .error(R.color.colorAccent)
                 .centerCrop()
-                .into(new BitmapImageViewTarget(iv_avatar) {
+                .into(new BitmapImageViewTarget(imgImagenCliente) {
                     @Override
                     protected void setResource(Bitmap resource) {
-                        RoundedBitmapDrawable drawable = RoundedBitmapDrawableFactory.create(context1.getResources(), resource);
+                        RoundedBitmapDrawable drawable = RoundedBitmapDrawableFactory.create(context.getResources(), resource);
                         drawable.setCircular(true);
-                        iv_avatar.setImageDrawable(drawable);
+                        imgImagenCliente.setImageDrawable(drawable);
                     }
                 });
 

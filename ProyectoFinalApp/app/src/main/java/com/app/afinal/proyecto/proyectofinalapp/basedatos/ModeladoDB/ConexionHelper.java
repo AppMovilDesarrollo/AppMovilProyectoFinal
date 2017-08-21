@@ -31,14 +31,8 @@ public class ConexionHelper extends SQLiteOpenHelper {
 
     public ConexionHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
-        // myContext = context;
-        // try {
-        //   createDataBase();
-        // openDataBase();
-        //} catch (IOException e) {
-        // TODO Auto-generated catch block
-        //  e.printStackTrace();
-        //}
+
+
     }
 
     @Override

@@ -1,8 +1,9 @@
 package com.app.afinal.proyecto.proyectofinalapp.basedatos;
 
 import android.content.ContentValues;
+import android.database.Cursor;
 
-import  com.app.afinal.proyecto.proyectofinalapp.basedatos.ModeladoDB.ClientesConstract;
+import com.app.afinal.proyecto.proyectofinalapp.basedatos.ModeladoDB.ClientesConstract;
 
 /**
  * Created by Jeison-UTN on 08/08/2017.
@@ -18,8 +19,6 @@ public class Clientes {
     private String Telefono;
     private String Direccion;
     private String Fotografia;
-
-
 
 
     public Clientes() {
@@ -51,6 +50,20 @@ public class Clientes {
         values.put(ClientesConstract.ClientesEntry.Fotografia, Fotografia);
 
         return values;
+    }
+
+    public Clientes(Cursor cursor) {
+
+        ID = cursor.getInt(cursor.getColumnIndex(ClientesConstract.ClientesEntry.ID));
+        Nombre = cursor.getString(cursor.getColumnIndex(ClientesConstract.ClientesEntry.Nombre));
+        Cedula_Cliente = cursor.getString(cursor.getColumnIndex(ClientesConstract.ClientesEntry.Cedula_Cliente));
+        LugarTrabajo = cursor.getString(cursor.getColumnIndex(ClientesConstract.ClientesEntry.LugarTrabajo));
+        Salario = cursor.getDouble(cursor.getColumnIndex(ClientesConstract.ClientesEntry.Salario));
+        Telefono = cursor.getString(cursor.getColumnIndex(ClientesConstract.ClientesEntry.Telefono));
+        Direccion = cursor.getString(cursor.getColumnIndex(ClientesConstract.ClientesEntry.Direccion));
+        Fotografia = cursor.getString(cursor.getColumnIndex(ClientesConstract.ClientesEntry.Fotografia));
+
+
     }
 
 
