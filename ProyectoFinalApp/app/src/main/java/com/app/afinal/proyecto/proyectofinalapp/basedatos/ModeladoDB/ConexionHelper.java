@@ -160,7 +160,7 @@ public class ConexionHelper extends SQLiteOpenHelper {
         // 3. updating row
         return db.update(
                 ClientesConstract.ClientesEntry.TABLE_NAME,
-                null,
+                clientes.toContentValues(),
                 ClientesConstract.ClientesEntry.ID + " = ?", // selections
                 new String[]{String.valueOf(clientes.getID())}); //selection args
 

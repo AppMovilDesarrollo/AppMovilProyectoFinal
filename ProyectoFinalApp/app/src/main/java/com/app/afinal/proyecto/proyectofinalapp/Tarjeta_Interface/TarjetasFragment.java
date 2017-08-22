@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.app.afinal.proyecto.proyectofinalapp.Formulario_Interface.FormularioDataFragment;
 import com.app.afinal.proyecto.proyectofinalapp.R;
 import com.app.afinal.proyecto.proyectofinalapp.basedatos.Clientes;
+import com.app.afinal.proyecto.proyectofinalapp.basedatos.ModeladoDB.ConexionHelper;
 import com.app.afinal.proyecto.proyectofinalapp.basedatos.Tarjetas;
 
 import java.io.Serializable;
@@ -28,15 +29,16 @@ import java.io.Serializable;
 public class TarjetasFragment extends Fragment {
 
 
-
     private Clientes clientesObtenidos;
     private FloatingActionButton bGuardarFormulario;
 
     private EditText etxtNumTar;
     private EditText expFecha;
-    private RadioButton rdBtn1;
-    private RadioButton rdBtn2;
     private EditText etxtMonto;
+    private int radio1;
+    private int radio2;
+
+    private ConexionHelper mConnexion;
 
 
     public TarjetasFragment() {
@@ -56,7 +58,7 @@ public class TarjetasFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-           Cursor cursor = (Cursor) getArguments().getSerializable("CLIENTECLASS");
+            Cursor cursor = (Cursor) getArguments().getParcelable("CLIENTECLASS");
             clientesObtenidos = new Clientes(cursor);
         }
     }
@@ -69,10 +71,10 @@ public class TarjetasFragment extends Fragment {
         bGuardarFormulario = (FloatingActionButton) getActivity().findViewById(R.id.bGuardarFormulario);
 
         etxtNumTar = (EditText) root.findViewById(R.id.etxtNumTar);
-        expFecha;
-        rdBtn1;
-        rdBtn2;
-        etxtMonto;
+        expFecha = (EditText) root.findViewById(R.id.expFecha);
+        etxtMonto = (EditText) root.findViewById(R.id.etxtMonto);
+
+        mConnexion = new ConexionHelper(getActivity());
 
         bGuardarFormulario.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,14 +89,44 @@ public class TarjetasFragment extends Fragment {
         return root;
     }
 
+    public void onRadioButtonClicked(View view) {
+        // Is the button now checked?
+        boolean checked = ((RadioButton) view).isChecked();
+
+        // Check which radio button was clicked
+        switch (view.getId()) {
+            case R.id.rdBtn1:
+                if (checked)
+                    radio1 = 1;
+                break;
+            case R.id.rdBtn2:
+                if (checked)
+                    radio2 = 2;
+                break;
+        }
+    }
+
+    public void guardarFormularioData() {
+
+        Tarjetas tarjetas = new Tarjetas();
+        Cursor cursor = mConnexion.allTarjetas();
+
+        tarjetas.setID(cursor.getCount()+1);
+        tarjetas.setCedula_Cliente(clientesObtenidos.getCedula_Cliente());
+        tarjetas.setNumeroTarjeta(String.valueOf(etxtNumTar.getText()));
+        tarjetas.setFechaVencimiento(String.valueOf(expFecha.getText()));
+        tarjetas.setMonto(Double.parseDouble(String.valueOf(etxtMonto.getText())));
 
 
-    private class agregarFormularioDataTarjetas extends AsyncTask<Tarjetas, Void, Boolean> {
+        new agregarFormularioDataTarjetas().execute(tarjetas);
+    }
+
+    private class agregarFormularioDataTarjetas  extends AsyncTask<Tarjetas, Void, Boolean> {
 
         @Override
         protected Boolean doInBackground(Tarjetas... tarjetas) {
 
-            return mConnexion.updateTarjetas(tarjetas[0]) > 0;
+            return mConnexion.insertTarjetas(tarjetas[0]) > 0;
         }
 
         @Override

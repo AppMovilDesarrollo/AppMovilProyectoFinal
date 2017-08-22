@@ -195,8 +195,6 @@ public class FormularioDataFragment extends Fragment {
         etxtFName.setText(clientesData.getNombre());
         etxtFCed.setText(clientesData.getCedula_Cliente());
         etxtFTel.setText(clientesData.getTelefono());
-        etxtSalary.setText((int) clientesData.getSalario());
-        etxtLugTra.setText(clientesData.getLugarTrabajo());
         etxtFDir.setText(clientesData.getDireccion());
 
 

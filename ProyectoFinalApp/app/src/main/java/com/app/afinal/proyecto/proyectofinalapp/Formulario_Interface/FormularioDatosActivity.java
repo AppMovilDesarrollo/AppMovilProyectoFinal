@@ -19,7 +19,7 @@ public class FormularioDatosActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detalles_clientes);
+        setContentView(R.layout.activity_formulario_datos);
         tituloFormulario = (Toolbar) findViewById(R.id.tituloFormulario);
         tituloFormulario.setTitle(R.string.strPantallaFormulario);
 

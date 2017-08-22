@@ -21,6 +21,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.app.afinal.proyecto.proyectofinalapp.Clientes_Interface.ClientesActivity;
+import com.app.afinal.proyecto.proyectofinalapp.Clientes_Interface.Clientes_Configuracion.ConfiguracionClientesActivity;
+import com.app.afinal.proyecto.proyectofinalapp.Formulario_Interface.FormularioDatosActivity;
 import com.app.afinal.proyecto.proyectofinalapp.R;
 import com.app.afinal.proyecto.proyectofinalapp.basedatos.Clientes;
 import com.app.afinal.proyecto.proyectofinalapp.basedatos.ModeladoDB.ConexionHelper;
@@ -47,6 +50,7 @@ public class DetalleClienteFragment extends Fragment {
 
     private Button bLlamar;
     private Button bSMS;
+    private Button btnFormulario;
 
     private ConexionHelper mConnexion;
 
@@ -87,6 +91,16 @@ public class DetalleClienteFragment extends Fragment {
         etxtDDir = (TextView) root.findViewById(R.id.etxtDDir);
         bLlamar = (Button) root.findViewById(R.id.bLlamar);
         bSMS = (Button) root.findViewById(R.id.bSMS);
+        btnFormulario = (Button) root.findViewById(R.id.btnFormulario);
+
+        btnFormulario.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                callPantallaFormulario();
+
+            }
+        });
 
         bLlamar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,6 +121,12 @@ public class DetalleClienteFragment extends Fragment {
         cargarCliente();
 
         return root;
+    }
+
+    public void callPantallaFormulario() {
+        Intent pantallaFormulario= new Intent(getActivity(), FormularioDatosActivity.class);
+        pantallaFormulario.putExtra(ClientesActivity.CLIENTEID, clienteIDMemoria);
+        startActivityForResult(pantallaFormulario, REQUEST_ADD_UPDATE_DELETE_CLIENT);
     }
 
     private void llamar(String numero) {
