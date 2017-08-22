@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.app.afinal.proyecto.proyectofinalapp.Clientes_Interface.ClientesActivity;
@@ -21,13 +22,14 @@ import com.app.afinal.proyecto.proyectofinalapp.R;
 import com.app.afinal.proyecto.proyectofinalapp.Tarjeta_Interface.TarjetasActivity;
 import com.app.afinal.proyecto.proyectofinalapp.basedatos.Clientes;
 import com.app.afinal.proyecto.proyectofinalapp.basedatos.ModeladoDB.ConexionHelper;
+import com.app.afinal.proyecto.proyectofinalapp.basedatos.Tarjetas;
 
 import java.io.Serializable;
 
 import static android.content.Context.MODE_PRIVATE;
 
 
-public class FormularioDataFragment extends Fragment {
+public class FormularioDataFragmentCompleto extends Fragment {
 
     private String clienteIDMemoria;
 
@@ -39,20 +41,21 @@ public class FormularioDataFragment extends Fragment {
     private EditText etxtLugTra;
     private EditText etxtFDir;
     private Button bNext;
+    private EditText etxtNumTar;
+    private EditText expFecha;
+    private EditText etxtMonto;
+    private RadioGroup grupo;
 
     private ConexionHelper mConnexion;
 
     private static final int REQUEST_ADD_UPDATE_DELETE_CLIENT = 1;
 
-    SharedPreferences share = getContext().getSharedPreferences("settings", MODE_PRIVATE);
-    SharedPreferences.Editor editarShare = share.edit();
-
-    public FormularioDataFragment() {
+    public FormularioDataFragmentCompleto() {
         // Required empty public constructor
     }
 
-    public static FormularioDataFragment newInstance(String clienteID) {
-        FormularioDataFragment fragment = new FormularioDataFragment();
+    public static FormularioDataFragmentCompleto newInstance(String clienteID) {
+        FormularioDataFragmentCompleto fragment = new FormularioDataFragmentCompleto();
         Bundle args = new Bundle();
         args.putString("CLIENTEID", clienteID);
         fragment.setArguments(args);
@@ -87,29 +90,24 @@ public class FormularioDataFragment extends Fragment {
         mConnexion = new ConexionHelper(getActivity());
 
         cargarClientes();
+        cargarTarjetas();
 
         bNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                guardarFormularioData();
+                salirCompletos();
             }
         });
 
         return root;
     }
 
-    private class agregarFormularioDataClientes extends AsyncTask<Clientes, Void, Boolean> {
+    public void salirCompletos() {
 
-        @Override
-        protected Boolean doInBackground(Clientes... clientes) {
+        getActivity().setResult(Activity.RESULT_OK);
 
-            return mConnexion.updateClientes(clientes[0]) > 0;
-        }
 
-        @Override
-        protected void onPostExecute(Boolean result) {
-            mostrarCompletarTarjeta(result);
-        }
+        getActivity().finish();
 
     }
 
@@ -131,60 +129,34 @@ public class FormularioDataFragment extends Fragment {
 
     }
 
-    private void guardarFormularioData() {
+    private class cargartarjetaID extends AsyncTask<Void, Void, Cursor> {
 
-        if (etxtFName.length() <= 0) {
-
-            etxtFName.setError("El campo nombre es requerido");
-
-        } else if (etxtFCed.length() <= 0) {
-
-            etxtFCed.setError("Debe ingresar un número de cédula");
-
-        } else if (etxtFTel.length() <= 0) {
-
-            etxtFTel.setError("Digite un teléfono para localizar al cliente");
-
-        } else if (etxtSalary.length() <= 0) {
-
-            etxtSalary.setError("El monto del salario debe ser mayor a 0");
-
-        } else if (etxtLugTra.length() <= 0) {
-
-            etxtLugTra.setError("Debe ingresar el lugar de trabajo");
-
-        } else if (etxtFDir.length() <= 0) {
-
-            etxtFDir.setError("Se debe ingresar una dirección");
-
-
-        } else {
-
-
-            clientesData.setID(Integer.parseInt(clienteIDMemoria));
-            clientesData.setNombre(etxtFName.getText().toString());
-            clientesData.setCedula_Cliente(etxtFCed.getText().toString());
-            clientesData.setTelefono(etxtFTel.getText().toString());
-            clientesData.setSalario(Double.parseDouble(etxtSalary.getText().toString()));
-            clientesData.setLugarTrabajo(etxtLugTra.getText().toString());
-            clientesData.setDireccion(etxtFDir.getText().toString());
-
-            etxtFName.setText("");
-            etxtFCed.setText("");
-            etxtFTel.setText("");
-            etxtSalary.setText("");
-            etxtLugTra.setText("");
-            etxtFDir.setText("");
-
-
-            new agregarFormularioDataClientes().execute(clientesData);
-
+        @Override
+        protected Cursor doInBackground(Void... voids) {
+            return mConnexion.tarjetasByCedula(clientesData.getCedula_Cliente());
         }
+
+        @Override
+        protected void onPostExecute(Cursor cursor) {
+            if (cursor != null && cursor.moveToLast()) {
+                mostrarTarjeta(new Tarjetas(cursor));
+            } else {
+                showError();
+            }
+        }
+
     }
+
 
     public void cargarClientes() {
 
         new cargarClienteID().execute();
+
+    }
+
+    public void cargarTarjetas() {
+
+        new cargartarjetaID().execute();
 
     }
 
@@ -195,30 +167,23 @@ public class FormularioDataFragment extends Fragment {
         etxtFName.setText(clientesData.getNombre());
         etxtFCed.setText(clientesData.getCedula_Cliente());
         etxtFTel.setText(clientesData.getTelefono());
-       // etxtSalary.setText((int) clientesData.getSalario());
-       // etxtLugTra.setText(clientesData.getLugarTrabajo());
+        etxtSalary.setText((int) clientesData.getSalario());
+        etxtLugTra.setText(clientesData.getLugarTrabajo());
         etxtFDir.setText(clientesData.getDireccion());
 
 
     }
 
-    private void mostrarCompletarTarjeta(boolean result) {
+    public void mostrarTarjeta(Tarjetas tarjeta) {
 
-        if (!result) {
+        etxtFName.setText(clientesData.getNombre());
+        etxtFCed.setText(clientesData.getCedula_Cliente());
+        etxtFTel.setText(clientesData.getTelefono());
+        etxtSalary.setText((int) clientesData.getSalario());
+        etxtLugTra.setText(clientesData.getLugarTrabajo());
+        etxtFDir.setText(clientesData.getDireccion());
 
-            showError();
 
-        } else {
-
-            showSuccess();
-
-            Intent pantallaTarjetas = new Intent(getActivity(), TarjetasActivity.class);
-            pantallaTarjetas.putExtra(ClientesActivity.CLIENTECEDULA, clientesData.getCedula_Cliente());
-            startActivityForResult(pantallaTarjetas, REQUEST_ADD_UPDATE_DELETE_CLIENT);
-
-        }
-
-        // getActivity().finish();
     }
 
 
@@ -232,27 +197,5 @@ public class FormularioDataFragment extends Fragment {
                 "Se ha guardado correctamente", Toast.LENGTH_SHORT).show();
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-
-
-        if (Activity.RESULT_OK == resultCode) {
-            switch (requestCode) {
-                case REQUEST_ADD_UPDATE_DELETE_CLIENT:
-
-
-                    editarShare.putString("FORMULARIOCOMPLETO","true");
-                    editarShare.commit();
-
-                    getActivity().setResult(Activity.RESULT_OK);
-                    getActivity().finish();
-                    break;
-            }
-        } else {
-            getActivity().setResult(Activity.RESULT_CANCELED);
-            getActivity().finish();
-        }
-
-    }
 
 }

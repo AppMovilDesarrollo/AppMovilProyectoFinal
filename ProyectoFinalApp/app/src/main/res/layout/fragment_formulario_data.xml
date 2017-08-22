@@ -1,132 +1,137 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.app.afinal.proyecto.proyectofinalapp.Formulario_Interface.FormularioDataFragment">
+    android:layout_height="match_parent">
 
-    <LinearLayout
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:orientation="vertical"
-        android:weightSum="1"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="8dp">
-
-        <TextView
-            android:id="@+id/txtFCli"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="30dp"
-            android:text="@string/txtFormu"
-            android:textAlignment="center"
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/txtFName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/txtDName" />
-
-        <EditText
-            android:id="@+id/etxtFName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="text"
-            android:text="" />
-
-        <TextView
-            android:id="@+id/txtFCed"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/txtDCed" />
-
-        <EditText
-            android:id="@+id/etxtFCed"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="text"
-            android:text="" />
-
-        <TextView
-            android:id="@+id/txtFTel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/txtDTel" />
+        tools:context="com.app.afinal.proyecto.proyectofinalapp.Formulario_Interface.FormularioDataFragment">
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:orientation="vertical"
+            android:weightSum="1"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="8dp">
+
+            <TextView
+                android:id="@+id/txtFCli"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp"
+                android:text="@string/txtFormu"
+                android:textAlignment="center"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/txtFName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txtDName" />
 
             <EditText
-                android:id="@+id/etxtFTel"
+                android:id="@+id/etxtFName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="number"
-                android:maxLength="12" />
+                android:inputType="text"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/txtFCed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txtDCed" />
+
+            <EditText
+                android:id="@+id/etxtFCed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="text"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/txtFTel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txtDTel" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/etxtFTel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="number"
+                    android:maxLength="12" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/txtSalary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/txtSalary" />
+
+            <EditText
+                android:id="@+id/etxtSalary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="numberDecimal"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/txtLugTra"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/txtLugTra" />
+
+            <EditText
+                android:id="@+id/etxtLugTra"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="text"
+                android:text="" />
+
+            <TextView
+                android:id="@+id/txtFDir"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txtDDir" />
+
+            <EditText
+                android:id="@+id/etxtFDir"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.25"
+                android:ems="10"
+                android:inputType="text"
+                tools:ignore="InefficientWeight" />
+
+            <TextView
+                android:id="@+id/tFoto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tFotoString" />
+
+            <Button
+                android:id="@+id/bNext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/bSiguienteTarjeta" />
+
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/txtSalary"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/txtSalary" />
-
-        <EditText
-            android:id="@+id/etxtSalary"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="numberDecimal"
-            android:text="" />
-
-        <TextView
-            android:id="@+id/txtLugTra"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/txtLugTra" />
-
-        <EditText
-            android:id="@+id/etxtLugTra"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="text"
-            android:text="" />
-
-        <TextView
-            android:id="@+id/txtFDir"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/txtDDir" />
-
-        <EditText
-            android:id="@+id/etxtFDir"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.25"
-            android:ems="10"
-            android:inputType="text"
-            tools:ignore="InefficientWeight" />
-
-        <TextView
-            android:id="@+id/tFoto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/tFotoString" />
-
-        <Button
-            android:id="@+id/bNext"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/bSiguienteTarjeta"/>
-
-    </LinearLayout>
-
-</FrameLayout>
+    </FrameLayout>
+</ScrollView>

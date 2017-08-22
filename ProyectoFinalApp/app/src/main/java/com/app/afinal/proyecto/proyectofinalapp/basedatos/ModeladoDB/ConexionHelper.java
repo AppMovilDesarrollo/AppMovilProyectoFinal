@@ -168,20 +168,6 @@ public class ConexionHelper extends SQLiteOpenHelper {
 
     }
 
-    public void deleteClientes(SQLiteDatabase db, Clientes clientes) {
-
-        // 2. delete
-        db.delete(
-                ClientesConstract.ClientesEntry.TABLE_NAME,
-                ClientesConstract.ClientesEntry.ID + " = ?", // selections
-                new String[]{String.valueOf(clientes.getID())}); //selections args
-
-        // 3. close
-
-
-    }
-
-
     public Cursor allClientes() {
         return getReadableDatabase()
                 .query(
@@ -233,19 +219,6 @@ public class ConexionHelper extends SQLiteOpenHelper {
 
     }
 
-    public void deleteTarjetas(SQLiteDatabase db, Tarjetas tarjetas) {
-
-        // 2. delete
-        db.delete(
-                TarjetasConstract.TarjetasEntry.TABLE_NAME,
-                TarjetasConstract.TarjetasEntry.ID + " = ?", // selections
-                new String[]{String.valueOf(tarjetas.getID())}); //selections args
-
-        // 3. close
-
-
-    }
-
 
     public Cursor allTarjetas() {
         return getReadableDatabase()
@@ -259,128 +232,17 @@ public class ConexionHelper extends SQLiteOpenHelper {
                         null);
     }
 
-    public Cursor TarjetasById(String tarjetasID) {
+    public Cursor tarjetasByCedula(String cedulaCliente) {
         Cursor c = getReadableDatabase().query(
                 TarjetasConstract.TarjetasEntry.TABLE_NAME,
                 null,
-                TarjetasConstract.TarjetasEntry.ID + " LIKE ?",
-                new String[]{tarjetasID},
+                TarjetasConstract.TarjetasEntry.Cedula_Cliente + " LIKE ?",
+                new String[]{cedulaCliente},
                 null,
                 null,
                 null);
         return c;
     }
 
-    public List<Tarjetas> getAllTarjetas(String TarjetasS) {
 
-        List<Tarjetas> tarjetasIDList = new LinkedList<Tarjetas>();
-
-        // 1. build the query
-        String query = "SELECT  * FROM " + TarjetasS;
-
-        // 2. get reference to writable DB
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery(query, null);
-
-        // 3. go over each row, build Tarjetas and add it to list
-        Tarjetas tarjetas = null;
-        if (cursor.moveToFirst()) {
-            do {
-
-                tarjetas = new Tarjetas();
-                tarjetas.setID(Integer.parseInt(cursor.getString(0)));
-                tarjetas.setCedula_Cliente(cursor.getString(1));
-                tarjetas.setNumeroTarjeta(cursor.getString(2));
-                tarjetas.setFechaVencimiento(cursor.getString(3));
-                tarjetas.setTipoTarjeta(Integer.parseInt(cursor.getString(4)));
-
-                // Add Tarjetas to Tarjetas
-                tarjetasIDList.add(tarjetas);
-            } while (cursor.moveToNext());
-        }
-        // return books
-        return tarjetasIDList;
-    }
-/*
-    public void createDataBase() throws IOException {
-
-        boolean dbExist = checkDataBase();
-
-        if (dbExist) {
-// Si existe, no haemos nada!
-        } else {
-// Llamando a este método se crea la base de datos vacía en la ruta
-// por defecto del sistema de nuestra aplicación por lo que
-// podremos sobreescribirla con nuestra base de datos.
-            this.getReadableDatabase();
-
-            try {
-
-                copyDataBase();
-
-            } catch (IOException e) {
-
-                throw new Error("Error copiando database");
-            }
-        }
-    }
-
-    private boolean checkDataBase() {
-
-        SQLiteDatabase checkDB = null;
-
-        try {
-            String myPath = DB_PATH + DB_NAME;
-            checkDB = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
-
-        } catch (SQLiteException e) {
-// Base de datos no creada todavia
-        }
-
-        if (checkDB != null) {
-
-            checkDB.close();
-        }
-
-        return checkDB != null ? true : false;
-
-    }
-
-    public void openDataBase() throws SQLException {
-
-// Open the database
-        String myPath = DB_PATH + DB_NAME;
-        myDataBase = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READWRITE);
-
-    }
-
-    @Override
-    public synchronized void close() {
-
-        if (myDataBase != null)
-            myDataBase.close();
-
-        super.close();
-    }
-
-    private void copyDataBase() throws IOException {
-
-        OutputStream databaseOutputStream = new FileOutputStream("" + DB_PATH + DB_NAME);
-        InputStream databaseInputStream;
-
-        byte[] buffer = new byte[1024];
-        int length;
-
-        databaseInputStream = myContext.getAssets().open("proyectofinal");
-        while ((length = databaseInputStream.read(buffer)) > 0) {
-            databaseOutputStream.write(buffer);
-        }
-
-        databaseInputStream.close();
-        databaseOutputStream.flush();
-        databaseOutputStream.close();
-    }
-
-
-*/
 }

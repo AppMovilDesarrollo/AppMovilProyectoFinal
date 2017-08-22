@@ -99,17 +99,19 @@
                     <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:id="@+id/grupoRadio"
+                        android:checkedButton="@+id/rdBtn1">
                     <RadioButton
                         android:id="@+id/rdBtn1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:onClick="onRadioButtonClicked" />
+                        />
                     <RadioButton
                         android:id="@+id/rdBtn2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:onClick="onRadioButtonClicked" />
+                       />
                     </RadioGroup>
                 </LinearLayout>
                 <LinearLayout

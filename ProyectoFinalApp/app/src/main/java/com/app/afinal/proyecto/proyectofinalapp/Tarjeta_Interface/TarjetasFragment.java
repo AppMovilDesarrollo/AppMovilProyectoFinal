@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.support.annotation.IdRes;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -15,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.app.afinal.proyecto.proyectofinalapp.Formulario_Interface.FormularioDataFragment;
@@ -35,8 +37,8 @@ public class TarjetasFragment extends Fragment {
     private EditText etxtNumTar;
     private EditText expFecha;
     private EditText etxtMonto;
-    private int radio1;
-    private int radio2;
+    private RadioGroup grupo;
+    private int radio=1;
 
     private ConexionHelper mConnexion;
 
@@ -58,7 +60,7 @@ public class TarjetasFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            clienteCedulaObtenida = getArguments().getString("CLIENTECLASS");
+            clienteCedulaObtenida = getArguments().getString("CLIENTECEDULA");
         }
     }
 
@@ -72,6 +74,23 @@ public class TarjetasFragment extends Fragment {
         etxtNumTar = (EditText) root.findViewById(R.id.etxtNumTar);
         expFecha = (EditText) root.findViewById(R.id.expFecha);
         etxtMonto = (EditText) root.findViewById(R.id.etxtMonto);
+        grupo = (RadioGroup) root.findViewById(R.id.grupoRadio);
+
+        grupo.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
+
+                // Check which radio button was clicked
+                switch (checkedId) {
+                    case R.id.rdBtn1:
+                            radio = 1;
+                        break;
+                    case R.id.rdBtn2:
+                            radio = 2;
+                        break;
+                }
+            }
+        });
 
         mConnexion = new ConexionHelper(getActivity());
 
@@ -88,22 +107,6 @@ public class TarjetasFragment extends Fragment {
         return root;
     }
 
-    public void onRadioButtonClicked(View view) {
-        // Is the button now checked?
-        boolean checked = ((RadioButton) view).isChecked();
-
-        // Check which radio button was clicked
-        switch (view.getId()) {
-            case R.id.rdBtn1:
-                if (checked)
-                    radio1 = 1;
-                break;
-            case R.id.rdBtn2:
-                if (checked)
-                    radio2 = 2;
-                break;
-        }
-    }
 
     public void guardarFormularioData() {
 
@@ -115,6 +118,7 @@ public class TarjetasFragment extends Fragment {
         tarjetas.setNumeroTarjeta(String.valueOf(etxtNumTar.getText()));
         tarjetas.setFechaVencimiento(String.valueOf(expFecha.getText()));
         tarjetas.setMonto(Double.parseDouble(String.valueOf(etxtMonto.getText())));
+        tarjetas.setTipoTarjeta(radio);
 
 
         new agregarFormularioDataTarjetas().execute(tarjetas);
