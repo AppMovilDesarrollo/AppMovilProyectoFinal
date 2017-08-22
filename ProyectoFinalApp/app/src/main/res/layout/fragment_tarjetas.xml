@@ -1,12 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.app.afinal.proyecto.proyectofinalapp.Tarjeta">
-
-
+    tools:context="com.app.afinal.proyecto.proyectofinalapp.Tarjeta_Interface.TarjetasFragment">
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -39,15 +35,14 @@
                 android:layout_marginTop="10dp"/>
 
 
-
             <EditText
                 android:id="@+id/etxtNumTar"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:inputType="number"
-                android:maxLength="16"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"/>
+                android:layout_marginRight="10dp"
+                android:inputType="number"
+                android:maxLength="16" />
 
             <TextView
                 android:id="@+id/txtExpDat"
@@ -155,7 +150,7 @@
 
             <EditText
                 android:id="@+id/etxtMonto"
-                android:layout_width="120dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/etxtMonto"
                 android:inputType="number"
@@ -173,4 +168,4 @@
         </LinearLayout>
     </LinearLayout>
 
-</android.support.constraint.ConstraintLayout>
+</FrameLayout>

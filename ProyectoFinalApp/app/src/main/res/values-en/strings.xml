@@ -32,6 +32,6 @@
 
     <string name="action_settings">Settings</string>
     <string name="title_activity_configuracion_clientes">ConfiguracionClientesActivity</string>
-    <string name="title_activity_detalles_clientes">Client details</string>
+    <string name="title_activity_detalles_clientes"></string>
 
 </resources>

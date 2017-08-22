@@ -29,7 +29,7 @@ public class ClientesFragment extends Fragment {
     private ClientesCursorAdapter mClientesAdapter;
     private Button btnConfig;
 
-    private static final int REQUEST_UPDATE_DELETE_CLIENT = 1;
+    private static final int REQUEST_ADD_UPDATE_DELETE_CLIENT = 1;
 
 
     public ClientesFragment() {
@@ -91,9 +91,10 @@ public class ClientesFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
+
         if (Activity.RESULT_OK == resultCode) {
             switch (requestCode) {
-                case REQUEST_UPDATE_DELETE_CLIENT:
+                case REQUEST_ADD_UPDATE_DELETE_CLIENT:
                     allClientes();
                     break;
             }
@@ -103,13 +104,13 @@ public class ClientesFragment extends Fragment {
 
     public void callPantallaConfiguracion() {
         Intent pantallaConfiguracion= new Intent(getActivity(), ConfiguracionClientesActivity.class);
-        startActivityForResult(pantallaConfiguracion, REQUEST_UPDATE_DELETE_CLIENT);
+        startActivityForResult(pantallaConfiguracion, REQUEST_ADD_UPDATE_DELETE_CLIENT);
     }
 
     private void mostrarDetallesCliente(String clienteID) {
         Intent pantallaDetallesClientes = new Intent(getActivity(), DetallesClientesActivity.class);
         pantallaDetallesClientes.putExtra(ClientesActivity.CLIENTEID, clienteID);
-        startActivityForResult(pantallaDetallesClientes, REQUEST_UPDATE_DELETE_CLIENT);
+        startActivityForResult(pantallaDetallesClientes, REQUEST_ADD_UPDATE_DELETE_CLIENT);
     }
 
     private class ClientesLoadTask extends AsyncTask<Void, Void, Cursor> {
@@ -121,37 +122,21 @@ public class ClientesFragment extends Fragment {
 
             Clientes clasdwa = new Clientes();
             clasdwa.setID(cursor.getCount() + 1);
-            clasdwa.setCedula_Cliente("123456");
-            clasdwa.setNombre("abcd");
-            clasdwa.setDireccion("a");
-            clasdwa.setTelefono("76554");
+            clasdwa.setCedula_Cliente("602950169");
+            clasdwa.setNombre("Mitilene Morales Caballero");
+            clasdwa.setDireccion("Heredia, Heredia, Corazón de Jesús");
+            clasdwa.setTelefono("+50689962662");
 
             Clientes clasda = new Clientes();
             clasda.setID(cursor.getCount() + 2);
-            clasda.setCedula_Cliente("67890");
-            clasda.setNombre("efgh");
-            clasda.setDireccion("a");
-            clasda.setTelefono("76554");
-
-            Clientes claswdaa = new Clientes();
-            claswdaa.setID(cursor.getCount() + 3);
-            claswdaa.setCedula_Cliente("23456");
-            claswdaa.setNombre("hijk");
-            claswdaa.setDireccion("a");
-            claswdaa.setTelefono("76554");
-
-            Clientes clasqda = new Clientes();
-            clasqda.setID(cursor.getCount() + 4);
-            clasqda.setCedula_Cliente("56789");
-            clasqda.setNombre("lmno");
-            clasqda.setDireccion("a");
-            clasqda.setTelefono("76554");
-
+            clasda.setCedula_Cliente("602130169");
+            clasda.setNombre("Bienvenido Cespedes Anchia");
+            clasda.setDireccion("Ciudad Neilly Puntarenas");
+            clasda.setTelefono("+50688538875");
 
             mConnexion.insertClientes(clasdwa);
             mConnexion.insertClientes(clasda);
-            mConnexion.insertClientes(claswdaa);
-            mConnexion.insertClientes(clasqda);
+
 
 
             return mConnexion.allClientes();

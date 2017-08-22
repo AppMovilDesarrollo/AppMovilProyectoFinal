@@ -8,7 +8,7 @@
         android:id="@+id/clientes_list"
         android:layout_marginTop="55dp"
         android:layout_width="match_parent"
-        android:layout_height="484dp"
+        android:layout_height="510dp"
         android:divider="@color/colorPrimary"/>
 
 </FrameLayout>

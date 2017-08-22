@@ -3,6 +3,7 @@
     package="com.app.afinal.proyecto.proyectofinalapp">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
 
     <application
         android:allowBackup="true"
@@ -11,7 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Clientes_Interface.ClientesActivity">
+        <activity
+            android:name=".Clientes_Interface.ClientesActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,11 +25,17 @@
             android:name=".Clientes_Interface.Clientes_Detalles.DetallesClientesActivity"
             android:label="@string/title_activity_detalles_clientes"
             android:theme="@style/AppTheme" />
-        <activity android:name=".Formulario" />
-        <activity android:name=".Tarjeta" />
         <activity
             android:name=".Clientes_Interface.Clientes_Configuracion.ConfiguracionClientesActivity"
             android:label="@string/title_activity_configuracion_clientes"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".Formulario_Interface.FormularioDatosActivity"
+            android:label="@string/title_activity_formulario_datos"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".Tarjeta_Interface.TarjetasActivity"
+            android:label="@string/title_activity_tarjetas"
             android:theme="@style/AppTheme"></activity>
     </application>
 

@@ -80,7 +80,7 @@ public class ConexionHelper extends SQLiteOpenHelper {
         c1.setCedula_Cliente("604150516");
         c1.setSalario(1000000);
         c1.setLugarTrabajo("Grupo Mutual Alajuela");
-        c1.setFotografia("Foto1.jpg");
+        c1.setFotografia("foto1.jpg");
         c1.setNombre("Jeison Andres Cespedes Morales");
         c1.setTelefono("+50685978859");
         c1.setDireccion("Heredia, Heredia, Corazon de Jesus");
@@ -92,7 +92,7 @@ public class ConexionHelper extends SQLiteOpenHelper {
         c2.setCedula_Cliente("604110437");
         c2.setSalario(50000);
         c2.setLugarTrabajo("Estudiante");
-        c2.setFotografia("Foto2.jpg");
+        c2.setFotografia("foto2.jpg");
         c2.setNombre("Yensy Vannessa Cespedes Morales");
         c2.setTelefono("+50683735557");
         c2.setDireccion("Heredia, Heredia, Corazon de Jesus");
@@ -141,11 +141,11 @@ public class ConexionHelper extends SQLiteOpenHelper {
 
     }
 
-    public void insertClientes(Clientes clientes) {
+    public long insertClientes(Clientes clientes) {
 
         SQLiteDatabase db = this.getWritableDatabase();
 
-        db.insert(
+        return db.insert(
                 ClientesConstract.ClientesEntry.TABLE_NAME,
                 null,
                 clientes.toContentValues());
@@ -244,13 +244,13 @@ public class ConexionHelper extends SQLiteOpenHelper {
     }
 
 
-    public void insertTarjetas(Tarjetas tarjetas) {
+    public long insertTarjetas(Tarjetas tarjetas) {
 
 
         SQLiteDatabase db = this.getWritableDatabase();
 
 
-        db.insert(
+       return db.insert(
                 TarjetasConstract.TarjetasEntry.TABLE_NAME,
                 null,
                 tarjetas.toContentValues());

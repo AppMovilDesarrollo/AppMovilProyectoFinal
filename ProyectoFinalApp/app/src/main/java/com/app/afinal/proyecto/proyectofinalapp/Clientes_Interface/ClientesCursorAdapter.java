@@ -3,6 +3,7 @@ package com.app.afinal.proyecto.proyectofinalapp.Clientes_Interface;
 import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
@@ -18,6 +19,13 @@ import com.app.afinal.proyecto.proyectofinalapp.basedatos.Clientes;
 import com.app.afinal.proyecto.proyectofinalapp.basedatos.ModeladoDB.ClientesConstract;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
+
+import java.io.ByteArrayOutputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
 
 /**
@@ -49,21 +57,48 @@ public class ClientesCursorAdapter extends CursorAdapter {
         String name = cursor.getString(cursor.getColumnIndex(ClientesConstract.ClientesEntry.Nombre));
         String foto = cursor.getString(cursor.getColumnIndex(ClientesConstract.ClientesEntry.Fotografia));
 
+        if(foto == null) {
+            foto ="foto1.jpg";
+        }
+
+        Bitmap bmp = null;
+        try {
+            InputStream inputStream = context.getAssets().open(foto);
+            bmp = BitmapFactory.decodeStream(inputStream);
+        }catch (IOException io){
+            io.printStackTrace();
+        }
+
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
+        byte[] byteArray = stream.toByteArray();
+
+        try {
+            FileOutputStream outputStream = context.openFileOutput(foto, Context.MODE_PRIVATE);
+            outputStream.write(byteArray);
+            outputStream.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e2) {
+            e2.printStackTrace();
+        }
+
+
+        Bitmap bitmap = null;
+
+        try{
+            FileInputStream fileInputStream =
+                    new FileInputStream(context.getFilesDir().getPath()+ "/"+foto);
+            bitmap = BitmapFactory.decodeStream(fileInputStream);
+        }catch (IOException io){
+            io.printStackTrace();
+        }
+
+        imgImagenCliente.setImageBitmap(bitmap);
+
 
         // Setup.
         lNombreCliente.setText(name);
-
-        Glide.with(context).load(Uri.parse("file://android_asset/" + foto)).asBitmap()
-                .error(R.color.colorAccent)
-                .centerCrop()
-                .into(new BitmapImageViewTarget(imgImagenCliente) {
-                    @Override
-                    protected void setResource(Bitmap resource) {
-                        RoundedBitmapDrawable drawable = RoundedBitmapDrawableFactory.create(context.getResources(), resource);
-                        drawable.setCircular(true);
-                        imgImagenCliente.setImageDrawable(drawable);
-                    }
-                });
 
 
     }

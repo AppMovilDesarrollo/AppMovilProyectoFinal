@@ -19,39 +19,44 @@
             android:layout_height="wrap_content"
             android:text="@string/txtDetaCli"
             android:textAlignment="center"
-            android:textSize="20sp" />
+            android:textSize="30dp" />
 
         <TextView
             android:id="@+id/txtDName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/txtDName" />
+            android:text="@string/txtDName"
+            android:textSize="24dp" />
 
         <TextView
             android:id="@+id/etxtDName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:text="" />
+            android:textColor="@color/colorPrimary"
+            android:textSize="20dp" />
 
         <TextView
             android:id="@+id/txtDCed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/txtDCed" />
+            android:text="@string/txtDCed"
+            android:textSize="24dp" />
 
         <TextView
             android:id="@+id/etxtDCed"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:text="" />
+            android:textColor="@color/colorPrimary"
+            android:textSize="20dp" />
 
         <TextView
             android:id="@+id/txtDTel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/txtDTel" />
+            android:text="@string/txtDTel"
+            android:textSize="24dp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -63,16 +68,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:text="" />
+                android:textColor="@color/colorPrimary"
+                android:textSize="20dp" />
 
             <Button
-                android:id="@+id/btnCall"
+                android:id="@+id/bLlamar"
                 android:layout_width="58dp"
                 android:layout_height="49dp"
                 android:drawableBottom="@android:drawable/sym_action_call" />
 
             <Button
-                android:id="@+id/btnChat"
+                android:id="@+id/bSMS"
                 android:layout_width="59dp"
                 android:layout_height="49dp"
                 android:drawableBottom="@android:drawable/sym_action_chat" />
@@ -83,7 +89,8 @@
             android:id="@+id/txtDDir"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/txtDDir" />
+            android:text="@string/txtDDir"
+            android:textSize="24dp" />
 
         <TextView
             android:id="@+id/etxtDDir"
@@ -91,6 +98,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.16"
             android:ems="10"
+            android:textColor="@color/colorPrimary"
             tools:ignore="InefficientWeight" />
 
         <Button

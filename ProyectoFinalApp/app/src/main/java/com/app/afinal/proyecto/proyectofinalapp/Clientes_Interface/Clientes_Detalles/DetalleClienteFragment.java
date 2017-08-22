@@ -1,8 +1,12 @@
 package com.app.afinal.proyecto.proyectofinalapp.Clientes_Interface.Clientes_Detalles;
 
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.Image;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -12,6 +16,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,6 +25,13 @@ import com.app.afinal.proyecto.proyectofinalapp.R;
 import com.app.afinal.proyecto.proyectofinalapp.basedatos.Clientes;
 import com.app.afinal.proyecto.proyectofinalapp.basedatos.ModeladoDB.ConexionHelper;
 import com.bumptech.glide.Glide;
+
+import java.io.ByteArrayOutputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
 
 public class DetalleClienteFragment extends Fragment {
@@ -33,8 +45,12 @@ public class DetalleClienteFragment extends Fragment {
     private TextView etxtDTel;
     private TextView etxtDDir;
 
+    private Button bLlamar;
+    private Button bSMS;
+
     private ConexionHelper mConnexion;
 
+    private static final int REQUEST_ADD_UPDATE_DELETE_CLIENT = 1;
 
     public DetalleClienteFragment() {
         // Required empty public constructor
@@ -64,12 +80,27 @@ public class DetalleClienteFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_detalle_cliente, container, false);
         tituloCampoImgClientesDetallesActivity = (CollapsingToolbarLayout) getActivity().findViewById(R.id.tituloCampoImgClientesDetallesActivity);
 
-
         imgImagenCliente_Foto = (ImageView) getActivity().findViewById(R.id.imgImagenCliente_Foto);
         etxtDName = (TextView) root.findViewById(R.id.etxtDName);
         etxtDCed = (TextView) root.findViewById(R.id.etxtDCed);
         etxtDTel = (TextView) root.findViewById(R.id.etxtDTel);
         etxtDDir = (TextView) root.findViewById(R.id.etxtDDir);
+        bLlamar = (Button) root.findViewById(R.id.bLlamar);
+        bSMS = (Button) root.findViewById(R.id.bSMS);
+
+        bLlamar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                llamar(String.valueOf(etxtDTel.getText()));
+            }
+        });
+
+        bSMS.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mensaje(String.valueOf(etxtDTel.getText()), String.valueOf(etxtDName.getText()));
+            }
+        });
 
         mConnexion = new ConexionHelper(getActivity());
 
@@ -78,20 +109,46 @@ public class DetalleClienteFragment extends Fragment {
         return root;
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        // Acciones
+    private void llamar(String numero) {
+
+        Intent llamar = new Intent(Intent.ACTION_DIAL);
+        llamar.setData(Uri.parse("tel:" + numero));
+        startActivity(llamar);
+    }
+
+    private void mensaje(String numero, String nombre) {
+
+        Intent mensaje = new Intent(Intent.ACTION_VIEW, Uri.parse("sms:" + numero));
+        mensaje.putExtra("sms_body", "Estimado " + nombre + " estamos en camino");
+        startActivity(mensaje);
     }
 
     private void mostrarCliente(Clientes cliente) {
 
-        tituloCampoImgClientesDetallesActivity.setTitle(cliente.getNombre());
+       // tituloCampoImgClientesDetallesActivity.setTitle(cliente.getNombre());
 
-        Glide.with(this)
-                .load(Uri.parse("file:///android_asset/" + cliente.getFotografia()))
-                .error(R.color.colorAccent)
-                .centerCrop()
-                .into(imgImagenCliente_Foto);
+        String fotografia = "";
+
+        if(cliente.getFotografia() == null) {
+            fotografia ="foto1.jpg";
+        } else {
+            fotografia = cliente.getFotografia();
+        }
+
+        Bitmap bitmap = null;
+
+        try{
+            FileInputStream fileInputStream =
+                    new FileInputStream(getContext().getFilesDir().getPath()+ "/"+fotografia);
+            bitmap = BitmapFactory.decodeStream(fileInputStream);
+
+            imgImagenCliente_Foto.setImageBitmap(bitmap);
+
+        }catch (IOException io){
+            io.printStackTrace();
+        }
+
+
 
         etxtDName.setText(cliente.getNombre());
         etxtDCed.setText(cliente.getCedula_Cliente());
@@ -124,6 +181,20 @@ public class DetalleClienteFragment extends Fragment {
 
     private void cargarCliente() {
         new CargarClienteID().execute();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+
+        if (Activity.RESULT_OK == resultCode) {
+            switch (requestCode) {
+                case REQUEST_ADD_UPDATE_DELETE_CLIENT:
+                    cargarCliente();
+                    break;
+            }
+        }
+
     }
 
 }
