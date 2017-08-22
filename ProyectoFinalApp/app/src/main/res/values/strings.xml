@@ -34,6 +34,11 @@
     <string name="strPantallaTarjetas">Completar Tarjetas</string>
     <string name="tFotoString">Guardar copia de cédula</string>
     <string name="bSiguienteTarjeta">Siguiente</string>
+    <string name="btnFoto">Foto</string>
+    <string name="titFoto">Agregar Foto</string>
+    <string name="opt1foto">Tomar Foto</string>
+    <string name="opt2foto">Seleccionar desde Libreria</string>
+    <string name="opt3foto">Cancelar</string>
 
     <string name="action_settings">Settings</string>
     <string name="title_activity_configuracion_clientes">ConfiguracionClientesActivity</string>
