@@ -195,6 +195,8 @@ public class FormularioDataFragment extends Fragment {
         etxtFName.setText(clientesData.getNombre());
         etxtFCed.setText(clientesData.getCedula_Cliente());
         etxtFTel.setText(clientesData.getTelefono());
+       // etxtSalary.setText((int) clientesData.getSalario());
+       // etxtLugTra.setText(clientesData.getLugarTrabajo());
         etxtFDir.setText(clientesData.getDireccion());
 
 
@@ -211,7 +213,7 @@ public class FormularioDataFragment extends Fragment {
             showSuccess();
 
             Intent pantallaTarjetas = new Intent(getActivity(), TarjetasActivity.class);
-            pantallaTarjetas.putExtra(ClientesActivity.CLIENTECLASS, (Parcelable) clientesData.getCursor());
+            pantallaTarjetas.putExtra(ClientesActivity.CLIENTECEDULA, clientesData.getCedula_Cliente());
             startActivityForResult(pantallaTarjetas, REQUEST_ADD_UPDATE_DELETE_CLIENT);
 
         }

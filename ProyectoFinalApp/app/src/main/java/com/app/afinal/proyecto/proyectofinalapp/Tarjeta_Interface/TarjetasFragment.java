@@ -29,7 +29,7 @@ import java.io.Serializable;
 public class TarjetasFragment extends Fragment {
 
 
-    private Clientes clientesObtenidos;
+    private String clienteCedulaObtenida;
     private FloatingActionButton bGuardarFormulario;
 
     private EditText etxtNumTar;
@@ -46,10 +46,10 @@ public class TarjetasFragment extends Fragment {
     }
 
 
-    public static TarjetasFragment newInstance(Cursor cliente) {
+    public static TarjetasFragment newInstance(String cedula) {
         TarjetasFragment fragment = new TarjetasFragment();
         Bundle args = new Bundle();
-        args.putParcelable("CLIENTECLASS", (Parcelable) cliente);
+        args.putString("CLIENTECEDULA", cedula);
         fragment.setArguments(args);
         return fragment;
     }
@@ -58,8 +58,7 @@ public class TarjetasFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            Cursor cursor = (Cursor) getArguments().getParcelable("CLIENTECLASS");
-            clientesObtenidos = new Clientes(cursor);
+            clienteCedulaObtenida = getArguments().getString("CLIENTECLASS");
         }
     }
 
@@ -111,8 +110,8 @@ public class TarjetasFragment extends Fragment {
         Tarjetas tarjetas = new Tarjetas();
         Cursor cursor = mConnexion.allTarjetas();
 
-        tarjetas.setID(cursor.getCount()+1);
-        tarjetas.setCedula_Cliente(clientesObtenidos.getCedula_Cliente());
+        tarjetas.setID(cursor.getCount() + 1);
+        tarjetas.setCedula_Cliente(clienteCedulaObtenida);
         tarjetas.setNumeroTarjeta(String.valueOf(etxtNumTar.getText()));
         tarjetas.setFechaVencimiento(String.valueOf(expFecha.getText()));
         tarjetas.setMonto(Double.parseDouble(String.valueOf(etxtMonto.getText())));
@@ -121,7 +120,7 @@ public class TarjetasFragment extends Fragment {
         new agregarFormularioDataTarjetas().execute(tarjetas);
     }
 
-    private class agregarFormularioDataTarjetas  extends AsyncTask<Tarjetas, Void, Boolean> {
+    private class agregarFormularioDataTarjetas extends AsyncTask<Tarjetas, Void, Boolean> {
 
         @Override
         protected Boolean doInBackground(Tarjetas... tarjetas) {

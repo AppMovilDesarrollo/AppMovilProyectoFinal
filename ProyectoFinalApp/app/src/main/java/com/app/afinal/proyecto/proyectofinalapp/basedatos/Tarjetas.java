@@ -1,6 +1,8 @@
 package  com.app.afinal.proyecto.proyectofinalapp.basedatos;
 
 import android.content.ContentValues;
+import android.database.Cursor;
+
 
 import  com.app.afinal.proyecto.proyectofinalapp.basedatos.ModeladoDB.TarjetasConstract;
 
@@ -44,6 +46,16 @@ public class Tarjetas {
 
 
         return values;
+    }
+
+    public Tarjetas (Cursor cursor) {
+
+        this.ID =  cursor.getInt(cursor.getColumnIndex(TarjetasConstract.TarjetasEntry.ID));
+        Cedula_Cliente =  cursor.getString(cursor.getColumnIndex(TarjetasConstract.TarjetasEntry.Cedula_Cliente));
+        NumeroTarjeta = cursor.getString(cursor.getColumnIndex(TarjetasConstract.TarjetasEntry.NumeroTarjeta));
+        FechaVencimiento = cursor.getString(cursor.getColumnIndex(TarjetasConstract.TarjetasEntry.FechaVencimiento));
+        Monto = cursor.getDouble(cursor.getColumnIndex(TarjetasConstract.TarjetasEntry.Monto));
+        TipoTarjeta = cursor.getInt(cursor.getColumnIndex(TarjetasConstract.TarjetasEntry.TipoTarjeta));
     }
 
     public int getID() {

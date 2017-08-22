@@ -23,6 +23,7 @@ public class Clientes {
 
 
     public Clientes() {
+
     }
 
     public Clientes(int ID, String nombre, String cedula_Cliente, String lugarTrabajo, double salario, String telefono, String direccion, String fotografia) {

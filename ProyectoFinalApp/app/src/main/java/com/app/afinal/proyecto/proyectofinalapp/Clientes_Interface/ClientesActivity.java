@@ -15,7 +15,7 @@ public class ClientesActivity extends AppCompatActivity {
 
 
     public static final String CLIENTEID = "CLIENTEID";
-    public static final String CLIENTECLASS = "CLIENTECLASS";
+    public static final String CLIENTECEDULA = "CLIENTECEDULA";
 
     public  static final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1;
 

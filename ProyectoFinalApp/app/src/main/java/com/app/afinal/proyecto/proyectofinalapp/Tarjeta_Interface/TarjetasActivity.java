@@ -28,12 +28,12 @@ public class TarjetasActivity extends AppCompatActivity {
         setSupportActionBar(tituloTarjetas);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        Cursor cursor = getIntent().getParcelableExtra(ClientesActivity.CLIENTECLASS);
+        String cedula = getIntent().getStringExtra(ClientesActivity.CLIENTECEDULA);
 
         fragment = (TarjetasFragment)
                 getSupportFragmentManager().findFragmentById(R.id.tarjetas_container);
         if (fragment == null) {
-            fragment = TarjetasFragment.newInstance(cursor);
+            fragment = TarjetasFragment.newInstance(cedula);
             getSupportFragmentManager()
                     .beginTransaction()
                     .add(R.id.tarjetas_container, fragment)
