@@ -153,25 +153,18 @@ public class ConexionHelper extends SQLiteOpenHelper {
 
     }
 
-    public boolean updateClientes(SQLiteDatabase db, Clientes clientes) {
+    public long updateClientes(Clientes clientes) {
 
-        boolean update = false;
+        SQLiteDatabase db = this.getWritableDatabase();
 
         // 3. updating row
-        int i = db.update(
+        return db.update(
                 ClientesConstract.ClientesEntry.TABLE_NAME,
                 null,
                 ClientesConstract.ClientesEntry.ID + " = ?", // selections
                 new String[]{String.valueOf(clientes.getID())}); //selection args
 
-        // 4. close
 
-
-        if (i != 0) {
-            update = true;
-        }
-
-        return update;
 
     }
 
@@ -213,36 +206,6 @@ public class ConexionHelper extends SQLiteOpenHelper {
         return c;
     }
 
-    public List<Clientes> getAllClientes(String clientesS) {
-
-        List<Clientes> clienteList = new LinkedList<Clientes>();
-
-        // 1. build the query
-        String query = "SELECT  * FROM " + clientesS;
-
-        // 2. get reference to writable DB
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery(query, null);
-
-        // 3. go over each row, build clientes and add it to list
-        Clientes cliente = null;
-        if (cursor.moveToFirst()) {
-            do {
-                cliente = new Clientes();
-                cliente.setID(Integer.parseInt(cursor.getString(0)));
-                cliente.setCedula_Cliente(cursor.getString(1));
-                cliente.setSalario(Float.parseFloat(cursor.getString(2)));
-                cliente.setLugarTrabajo(cursor.getString(3));
-                cliente.setFotografia(cursor.getString(4));
-
-                // Add clientes to clientes
-                clienteList.add(cliente);
-            } while (cursor.moveToNext());
-        }
-        // return books
-        return clienteList;
-    }
-
 
     public long insertTarjetas(Tarjetas tarjetas) {
 
@@ -258,23 +221,15 @@ public class ConexionHelper extends SQLiteOpenHelper {
 
     }
 
-    public boolean updateTarjetas(SQLiteDatabase db, Tarjetas tarjetas) {
+    public long updateTarjetas(Tarjetas tarjetas) {
 
-        boolean update = false;
+        SQLiteDatabase db = this.getWritableDatabase();
 
-        // 3. updating row
-        int i = db.update(
+       return db.update(
                 TarjetasConstract.TarjetasEntry.TABLE_NAME,
                 null,
                 TarjetasConstract.TarjetasEntry.ID + " = ?", // selections
                 new String[]{String.valueOf(tarjetas.getID())}); //selection args
-
-
-        if (i != 0) {
-            update = true;
-        }
-
-        return update;
 
     }
 

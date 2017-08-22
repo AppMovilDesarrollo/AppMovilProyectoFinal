@@ -29,9 +29,18 @@
     <string name="btnCancel">Cancel</string>
     <string name="strPantallaClientes">Clients</string>
     <string name="strPantallaConfiguracionClientes">Add Clients</string>
+    <string name="strPantallaFormulario">Complete form</string>
+    <string name="strPantallaTarjetas">Completar Tarjetas</string>
+    <string name="tFotoString">Save identification</string>
+    <string name="bSiguienteTarjeta">Next</string>
 
     <string name="action_settings">Settings</string>
     <string name="title_activity_configuracion_clientes">ConfiguracionClientesActivity</string>
     <string name="title_activity_detalles_clientes"></string>
+    <string name="title_activity_formulario_datos">FormularioDatosActivity</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_tarjetas">TarjetasActivity</string>
 
 </resources>

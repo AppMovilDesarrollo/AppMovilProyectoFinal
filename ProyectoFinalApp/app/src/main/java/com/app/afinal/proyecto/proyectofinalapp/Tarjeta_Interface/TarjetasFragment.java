@@ -1,53 +1,53 @@
 package com.app.afinal.proyecto.proyectofinalapp.Tarjeta_Interface;
 
+import android.app.Activity;
 import android.content.Context;
+import android.database.Cursor;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Parcelable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.Toast;
 
+import com.app.afinal.proyecto.proyectofinalapp.Formulario_Interface.FormularioDataFragment;
 import com.app.afinal.proyecto.proyectofinalapp.R;
+import com.app.afinal.proyecto.proyectofinalapp.basedatos.Clientes;
+import com.app.afinal.proyecto.proyectofinalapp.basedatos.Tarjetas;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link TarjetasFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link TarjetasFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.io.Serializable;
+
+
 public class TarjetasFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
-    private OnFragmentInteractionListener mListener;
+
+    private Clientes clientesObtenidos;
+    private FloatingActionButton bGuardarFormulario;
+
+    private EditText etxtNumTar;
+    private EditText expFecha;
+    private RadioButton rdBtn1;
+    private RadioButton rdBtn2;
+    private EditText etxtMonto;
+
 
     public TarjetasFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment TarjetasFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static TarjetasFragment newInstance(String param1, String param2) {
+
+    public static TarjetasFragment newInstance(Cursor cliente) {
         TarjetasFragment fragment = new TarjetasFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putParcelable("CLIENTECLASS", (Parcelable) cliente);
         fragment.setArguments(args);
         return fragment;
     }
@@ -56,54 +56,76 @@ public class TarjetasFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+           Cursor cursor = (Cursor) getArguments().getSerializable("CLIENTECLASS");
+            clientesObtenidos = new Clientes(cursor);
         }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_tarjetas, container, false);
+
+        View root = inflater.inflate(R.layout.fragment_tarjetas, container, false);
+        bGuardarFormulario = (FloatingActionButton) getActivity().findViewById(R.id.bGuardarFormulario);
+
+        etxtNumTar = (EditText) root.findViewById(R.id.etxtNumTar);
+        expFecha;
+        rdBtn1;
+        rdBtn2;
+        etxtMonto;
+
+        bGuardarFormulario.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                guardarFormularioData();
+
+            }
+        });
+
+        return root;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
+
+
+    private class agregarFormularioDataTarjetas extends AsyncTask<Tarjetas, Void, Boolean> {
+
+        @Override
+        protected Boolean doInBackground(Tarjetas... tarjetas) {
+
+            return mConnexion.updateTarjetas(tarjetas[0]) > 0;
         }
+
+        @Override
+        protected void onPostExecute(Boolean result) {
+            mostraListaClintesFinalizar(result);
+        }
+
     }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
+    private void mostraListaClintesFinalizar(boolean result) {
+
+        if (!result) {
+
+            showError();
+            getActivity().setResult(Activity.RESULT_CANCELED);
         } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
+
+            showSuccess();
+            getActivity().setResult(Activity.RESULT_OK);
         }
+
+        getActivity().finish();
     }
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
+    private void showError() {
+        Toast.makeText(getActivity(),
+                "Error al agregar nueva información", Toast.LENGTH_SHORT).show();
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+    private void showSuccess() {
+        Toast.makeText(getActivity(),
+                "Se ha guardado correctamente", Toast.LENGTH_SHORT).show();
     }
 }

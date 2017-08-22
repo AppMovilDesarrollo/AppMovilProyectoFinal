@@ -30,6 +30,10 @@
     <string name="btnCancel">Cancelar</string>
     <string name="strPantallaClientes">Clientes</string>
     <string name="strPantallaConfiguracionClientes">Agregar Clientes</string>
+    <string name="strPantallaFormulario">Completar Formulario</string>
+    <string name="strPantallaTarjetas">Completar Tarjetas</string>
+    <string name="tFotoString">Guardar copia de cédula</string>
+    <string name="bSiguienteTarjeta">Siguiente</string>
 
     <string name="action_settings">Settings</string>
     <string name="title_activity_configuracion_clientes">ConfiguracionClientesActivity</string>

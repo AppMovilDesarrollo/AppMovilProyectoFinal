@@ -89,8 +89,6 @@ public class ConfiguracionClientesFragment extends Fragment {
 
     private void guardarClientes() {
 
-        boolean error = false;
-
         Cursor cursor = mConexionDbHelper.allClientes();
 
         if (txtNombre.length() <= 0) {

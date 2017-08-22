@@ -7,25 +7,44 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import com.app.afinal.proyecto.proyectofinalapp.Clientes_Interface.ClientesActivity;
+import com.app.afinal.proyecto.proyectofinalapp.Clientes_Interface.Clientes_Detalles.DetalleClienteFragment;
 import com.app.afinal.proyecto.proyectofinalapp.R;
 
 public class FormularioDatosActivity extends AppCompatActivity {
 
+    Toolbar tituloFormulario;
+    FormularioDataFragment fragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_formulario_datos);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        setContentView(R.layout.activity_detalles_clientes);
+        tituloFormulario = (Toolbar) findViewById(R.id.tituloFormulario);
+        tituloFormulario.setTitle(R.string.strPantallaFormulario);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        setSupportActionBar(tituloFormulario);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        String id = getIntent().getStringExtra(ClientesActivity.CLIENTEID);
+
+        fragment = (FormularioDataFragment)
+                getSupportFragmentManager().findFragmentById(R.id.formulario_container);
+        if (fragment == null) {
+            fragment = FormularioDataFragment.newInstance(id);
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .add(R.id.formulario_container, fragment)
+                    .commit();
+        }
+
+
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 
 }

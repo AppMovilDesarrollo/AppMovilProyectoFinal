@@ -19,6 +19,7 @@ public class Clientes {
     private String Telefono;
     private String Direccion;
     private String Fotografia;
+    private Cursor cursor;
 
 
     public Clientes() {
@@ -54,6 +55,7 @@ public class Clientes {
 
     public Clientes(Cursor cursor) {
 
+        this.cursor = cursor;
         ID = cursor.getInt(cursor.getColumnIndex(ClientesConstract.ClientesEntry.ID));
         Nombre = cursor.getString(cursor.getColumnIndex(ClientesConstract.ClientesEntry.Nombre));
         Cedula_Cliente = cursor.getString(cursor.getColumnIndex(ClientesConstract.ClientesEntry.Cedula_Cliente));
@@ -66,6 +68,13 @@ public class Clientes {
 
     }
 
+    public Cursor getCursor() {
+        return cursor;
+    }
+
+    public void setCursor(Cursor cursor) {
+        this.cursor = cursor;
+    }
 
     public int getID() {
         return ID;
