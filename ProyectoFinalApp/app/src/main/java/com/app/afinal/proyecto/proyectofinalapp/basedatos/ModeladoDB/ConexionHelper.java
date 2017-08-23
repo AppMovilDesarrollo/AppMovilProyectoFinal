@@ -92,7 +92,7 @@ public class ConexionHelper extends SQLiteOpenHelper {
         c2.setCedula_Cliente("604110437");
         c2.setSalario(50000);
         c2.setLugarTrabajo("Estudiante");
-        c2.setFotografia("foto2.jpg");
+        c2.setFotografia("foto1.jpg");
         c2.setNombre("Yensy Vannessa Cespedes Morales");
         c2.setTelefono("+50683735557");
         c2.setDireccion("Heredia, Heredia, Corazon de Jesus");
