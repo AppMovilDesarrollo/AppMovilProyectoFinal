@@ -127,7 +127,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        tools:src="@drawable/visa"
+                        android:src="@drawable/visa"
                         android:layout_marginLeft="5dp"
                         android:layout_marginStart="5dp"
                         android:layout_marginBottom="15dp"
@@ -141,7 +141,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        tools:src="@drawable/master"
+                        android:src="@drawable/master"
                         android:layout_marginLeft="10dp"
                         android:layout_marginStart="10dp"/>
                 </LinearLayout>

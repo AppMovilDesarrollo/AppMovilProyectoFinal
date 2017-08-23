@@ -20,7 +20,7 @@
             tools:layout_editor_absoluteY="8dp">
 
             <TextView
-                android:id="@+id/txtFCli"
+                android:id="@+id/txtFCli2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
@@ -29,13 +29,13 @@
                 android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/txtFName"
+                android:id="@+id/txtFName2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/txtDName" />
 
             <EditText
-                android:id="@+id/etxtFName"
+                android:id="@+id/etxtFName2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -43,13 +43,13 @@
                 android:text="" />
 
             <TextView
-                android:id="@+id/txtFCed"
+                android:id="@+id/txtFCed2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/txtDCed" />
 
             <EditText
-                android:id="@+id/etxtFCed"
+                android:id="@+id/etxtFCed2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -57,7 +57,7 @@
                 android:text="" />
 
             <TextView
-                android:id="@+id/txtFTel"
+                android:id="@+id/txtFTel2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/txtDTel" />
@@ -68,7 +68,7 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/etxtFTel"
+                    android:id="@+id/etxtFTel2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -77,13 +77,13 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/txtSalary"
+                android:id="@+id/txtSalary2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/txtSalary" />
 
             <EditText
-                android:id="@+id/etxtSalary"
+                android:id="@+id/etxtSalary2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -91,13 +91,13 @@
                 android:text="" />
 
             <TextView
-                android:id="@+id/txtLugTra"
+                android:id="@+id/txtLugTra2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/txtLugTra" />
 
             <EditText
-                android:id="@+id/etxtLugTra"
+                android:id="@+id/etxtLugTra2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -105,13 +105,13 @@
                 android:text="" />
 
             <TextView
-                android:id="@+id/txtFDir"
+                android:id="@+id/txtFDir2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/txtDDir" />
 
             <EditText
-                android:id="@+id/etxtFDir"
+                android:id="@+id/etxtFDir2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"
@@ -126,7 +126,7 @@
 
 
                 <TextView
-                    android:id="@+id/txtTranPago"
+                    android:id="@+id/txtTranPago2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/txtPago"
@@ -139,13 +139,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/txtNumTar"
-                    android:layout_below="@+id/txtTranPago"
+                    android:layout_below="@+id/txtTranPago2"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"/>
 
 
                 <EditText
-                    android:id="@+id/etxtNumTar"
+                    android:id="@+id/etxtNumTar2"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -154,7 +154,7 @@
                     android:maxLength="16" />
 
                 <TextView
-                    android:id="@+id/txtExpDat"
+                    android:id="@+id/txtExpDat2"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/txtExpDat"
@@ -169,7 +169,7 @@
                     android:weightSum="1">
 
                     <EditText
-                        android:id="@+id/expFecha"
+                        android:id="@+id/expFecha2"
                         android:layout_width="40dp"
                         android:layout_height="wrap_content"
                         android:maxLength="5"
@@ -179,7 +179,7 @@
                         android:layout_weight="0.15" />
 
                     <TextView
-                        android:id="@+id/expError"
+                        android:id="@+id/expError2"
                         android:layout_width="30dp"
                         android:layout_height="wrap_content"
                         android:visibility="gone"/>
@@ -209,15 +209,15 @@
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
-                            android:id="@+id/grupoRadio"
-                            android:checkedButton="@+id/rdBtn1">
+                            android:id="@+id/grupoRadio2"
+                            android:checkedButton="@+id/rdBtn12">
                             <RadioButton
-                                android:id="@+id/rdBtn1"
+                                android:id="@+id/rdBtn12"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 />
                             <RadioButton
-                                android:id="@+id/rdBtn2"
+                                android:id="@+id/rdBtn22"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 />
@@ -229,34 +229,34 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:id="@+id/Visa"
+                            android:id="@+id/Visa2"
                             android:adjustViewBounds= "true"
                             android:maxHeight="20dp"
                             android:maxWidth="40dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
-                            tools:src="@drawable/visa"
+                            android:src="@drawable/visa"
                             android:layout_marginLeft="5dp"
                             android:layout_marginStart="5dp"
                             android:layout_marginBottom="15dp"
                             android:layout_marginTop="10dp"/>
 
                         <ImageView
-                            android:id="@+id/Master"
+                            android:id="@+id/Master2"
                             android:adjustViewBounds= "true"
                             android:maxHeight="20dp"
                             android:maxWidth="40dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
-                            tools:src="@drawable/master"
+                            android:src="@drawable/master"
                             android:layout_marginLeft="10dp"
                             android:layout_marginStart="10dp"/>
                     </LinearLayout>
                 </LinearLayout>
                 <TextView
-                    android:id="@+id/txtMonto"
+                    android:id="@+id/txtMonto2"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/txtMonto"
@@ -265,15 +265,23 @@
                     android:layout_marginRight="10dp"/>
 
                 <EditText
-                    android:id="@+id/etxtMonto"
+                    android:id="@+id/etxtMonto2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="number"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"/>
+
+                <Button
+                    android:id="@+id/bCerrar2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/btnSave.Content"/>
             </LinearLayout>
 
+
         </LinearLayout>
+
 
     </FrameLayout>
 </ScrollView>

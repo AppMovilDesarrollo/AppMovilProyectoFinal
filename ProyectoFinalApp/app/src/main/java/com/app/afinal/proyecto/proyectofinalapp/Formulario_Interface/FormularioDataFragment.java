@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,18 +45,16 @@ public class FormularioDataFragment extends Fragment {
 
     private static final int REQUEST_ADD_UPDATE_DELETE_CLIENT = 1;
 
-    SharedPreferences share = getContext().getSharedPreferences("settings", MODE_PRIVATE);
-    SharedPreferences.Editor editarShare = share.edit();
-
     public FormularioDataFragment() {
-        // Required empty public constructor
     }
 
     public static FormularioDataFragment newInstance(String clienteID) {
         FormularioDataFragment fragment = new FormularioDataFragment();
         Bundle args = new Bundle();
+
         args.putString("CLIENTEID", clienteID);
         fragment.setArguments(args);
+
         return fragment;
     }
 
@@ -195,8 +194,6 @@ public class FormularioDataFragment extends Fragment {
         etxtFName.setText(clientesData.getNombre());
         etxtFCed.setText(clientesData.getCedula_Cliente());
         etxtFTel.setText(clientesData.getTelefono());
-       // etxtSalary.setText((int) clientesData.getSalario());
-       // etxtLugTra.setText(clientesData.getLugarTrabajo());
         etxtFDir.setText(clientesData.getDireccion());
 
 
@@ -241,8 +238,7 @@ public class FormularioDataFragment extends Fragment {
                 case REQUEST_ADD_UPDATE_DELETE_CLIENT:
 
 
-                    editarShare.putString("FORMULARIOCOMPLETO","true");
-                    editarShare.commit();
+                    ClientesActivity.FORMULARIOCOMPLETO = true;
 
                     getActivity().setResult(Activity.RESULT_OK);
                     getActivity().finish();

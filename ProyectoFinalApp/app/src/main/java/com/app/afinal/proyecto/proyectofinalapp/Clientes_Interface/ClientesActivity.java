@@ -2,6 +2,8 @@ package com.app.afinal.proyecto.proyectofinalapp.Clientes_Interface;
 
 
 import android.Manifest;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
@@ -16,6 +18,7 @@ public class ClientesActivity extends AppCompatActivity {
 
     public static final String CLIENTEID = "CLIENTEID";
     public static final String CLIENTECEDULA = "CLIENTECEDULA";
+    public static boolean FORMULARIOCOMPLETO = false;
 
     public  static final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 1;
 

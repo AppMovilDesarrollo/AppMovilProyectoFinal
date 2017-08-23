@@ -8,12 +8,14 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
@@ -34,17 +36,18 @@ public class FormularioDataFragmentCompleto extends Fragment {
     private String clienteIDMemoria;
 
     private Clientes clientesData;
-    private EditText etxtFName;
-    private EditText etxtFCed;
-    private EditText etxtFTel;
-    private EditText etxtSalary;
-    private EditText etxtLugTra;
-    private EditText etxtFDir;
-    private Button bNext;
-    private EditText etxtNumTar;
-    private EditText expFecha;
-    private EditText etxtMonto;
-    private RadioGroup grupo;
+    private EditText etxtFName2;
+    private EditText etxtFCed2;
+    private EditText etxtFTel2;
+    private EditText etxtSalary2;
+    private EditText etxtLugTra2;
+    private EditText etxtFDir2;
+    private Button bCerrar2;
+    private EditText etxtNumTar2;
+    private EditText expFecha2;
+    private EditText etxtMonto2;
+    private RadioButton rdBtn12;
+    private RadioButton rdBtn22;
 
     private ConexionHelper mConnexion;
 
@@ -75,15 +78,20 @@ public class FormularioDataFragmentCompleto extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_formulario_data, container, false);
+        View root = inflater.inflate(R.layout.fragment_formulario_data_fragment_completo, container, false);
 
-        etxtFName = (EditText) root.findViewById(R.id.etxtFName);
-        etxtFCed = (EditText) root.findViewById(R.id.etxtFCed);
-        etxtFTel = (EditText) root.findViewById(R.id.etxtFTel);
-        etxtSalary = (EditText) root.findViewById(R.id.etxtSalary);
-        etxtLugTra = (EditText) root.findViewById(R.id.etxtLugTra);
-        etxtFDir = (EditText) root.findViewById(R.id.etxtFDir);
-        bNext = (Button) root.findViewById(R.id.bNext);
+        etxtFName2 = (EditText) root.findViewById(R.id.etxtFName2);
+        etxtFCed2 = (EditText) root.findViewById(R.id.etxtFCed2);
+        etxtFTel2 = (EditText) root.findViewById(R.id.etxtFTel2);
+        etxtSalary2 = (EditText) root.findViewById(R.id.etxtSalary2);
+        etxtLugTra2 = (EditText) root.findViewById(R.id.etxtLugTra2);
+        etxtFDir2 = (EditText) root.findViewById(R.id.etxtFDir2);
+        etxtNumTar2 = (EditText) root.findViewById(R.id.etxtNumTar2);
+        expFecha2 = (EditText) root.findViewById(R.id.expFecha2);
+        etxtMonto2 = (EditText) root.findViewById(R.id.etxtMonto2);
+        rdBtn12 = (RadioButton) root.findViewById(R.id.rdBtn12);
+        rdBtn22 = (RadioButton) root.findViewById(R.id.rdBtn22);
+        bCerrar2 = (Button) root.findViewById(R.id.bCerrar2);
 
         clientesData = new Clientes();
 
@@ -92,7 +100,8 @@ public class FormularioDataFragmentCompleto extends Fragment {
         cargarClientes();
         cargarTarjetas();
 
-        bNext.setOnClickListener(new View.OnClickListener() {
+
+        bCerrar2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 salirCompletos();
@@ -106,6 +115,7 @@ public class FormularioDataFragmentCompleto extends Fragment {
 
         getActivity().setResult(Activity.RESULT_OK);
 
+        ClientesActivity.FORMULARIOCOMPLETO = false;
 
         getActivity().finish();
 
@@ -152,6 +162,8 @@ public class FormularioDataFragmentCompleto extends Fragment {
 
         new cargarClienteID().execute();
 
+
+
     }
 
     public void cargarTarjetas() {
@@ -164,24 +176,26 @@ public class FormularioDataFragmentCompleto extends Fragment {
 
         clientesData = cliente;
 
-        etxtFName.setText(clientesData.getNombre());
-        etxtFCed.setText(clientesData.getCedula_Cliente());
-        etxtFTel.setText(clientesData.getTelefono());
-        etxtSalary.setText((int) clientesData.getSalario());
-        etxtLugTra.setText(clientesData.getLugarTrabajo());
-        etxtFDir.setText(clientesData.getDireccion());
+        etxtFName2.setText(clientesData.getNombre());
+        etxtFCed2.setText(clientesData.getCedula_Cliente());
+        etxtFTel2.setText(clientesData.getTelefono());
+        etxtSalary2.setText((int) clientesData.getSalario());
+        etxtLugTra2.setText(clientesData.getLugarTrabajo());
+        etxtFDir2.setText(clientesData.getDireccion());
 
 
     }
 
     public void mostrarTarjeta(Tarjetas tarjeta) {
 
-        etxtFName.setText(clientesData.getNombre());
-        etxtFCed.setText(clientesData.getCedula_Cliente());
-        etxtFTel.setText(clientesData.getTelefono());
-        etxtSalary.setText((int) clientesData.getSalario());
-        etxtLugTra.setText(clientesData.getLugarTrabajo());
-        etxtFDir.setText(clientesData.getDireccion());
+        etxtNumTar2.setText(tarjeta.getNumeroTarjeta());
+        expFecha2.setText(tarjeta.getFechaVencimiento());
+        etxtMonto2.setText(String.valueOf(tarjeta.getMonto()));
+        if (tarjeta.getTipoTarjeta()==1) {
+            rdBtn12.setChecked(true);
+        } else {
+            rdBtn22.setChecked(true);
+        }
 
 
     }

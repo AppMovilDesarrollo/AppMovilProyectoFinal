@@ -38,7 +38,7 @@ public class TarjetasFragment extends Fragment {
     private EditText expFecha;
     private EditText etxtMonto;
     private RadioGroup grupo;
-    private int radio=1;
+    private int radio = 1;
 
     private ConexionHelper mConnexion;
 
@@ -83,10 +83,10 @@ public class TarjetasFragment extends Fragment {
                 // Check which radio button was clicked
                 switch (checkedId) {
                     case R.id.rdBtn1:
-                            radio = 1;
+                        radio = 1;
                         break;
                     case R.id.rdBtn2:
-                            radio = 2;
+                        radio = 2;
                         break;
                 }
             }
@@ -110,18 +110,41 @@ public class TarjetasFragment extends Fragment {
 
     public void guardarFormularioData() {
 
-        Tarjetas tarjetas = new Tarjetas();
-        Cursor cursor = mConnexion.allTarjetas();
 
-        tarjetas.setID(cursor.getCount() + 1);
-        tarjetas.setCedula_Cliente(clienteCedulaObtenida);
-        tarjetas.setNumeroTarjeta(String.valueOf(etxtNumTar.getText()));
-        tarjetas.setFechaVencimiento(String.valueOf(expFecha.getText()));
-        tarjetas.setMonto(Double.parseDouble(String.valueOf(etxtMonto.getText())));
-        tarjetas.setTipoTarjeta(radio);
+        if (etxtNumTar.length() <= 0) {
+
+            etxtNumTar.setError("El campo número de tarjeta debe ser mayor a 0");
+
+        } else if (etxtNumTar.length() <= 15) {
 
 
-        new agregarFormularioDataTarjetas().execute(tarjetas);
+            etxtNumTar.setError("El campo número de tarjeta debe ser mayor a 15");
+
+        } else if (expFecha.length() <= 0) {
+
+            expFecha.setError("Digite fecha de vencimiento de tarjeta");
+
+        } else if (etxtMonto.length() <= 0) {
+
+            etxtMonto.setError("El monto debe ser mayor a 0");
+
+        } else {
+
+
+            Tarjetas tarjetas = new Tarjetas();
+            Cursor cursor = mConnexion.allTarjetas();
+
+            tarjetas.setID(cursor.getCount() + 1);
+            tarjetas.setCedula_Cliente(clienteCedulaObtenida);
+            tarjetas.setNumeroTarjeta(String.valueOf(etxtNumTar.getText()));
+            tarjetas.setFechaVencimiento(String.valueOf(expFecha.getText()));
+            tarjetas.setMonto(Double.parseDouble(String.valueOf(etxtMonto.getText())));
+            tarjetas.setTipoTarjeta(radio);
+
+            new agregarFormularioDataTarjetas().execute(tarjetas);
+
+        }
+
     }
 
     private class agregarFormularioDataTarjetas extends AsyncTask<Tarjetas, Void, Boolean> {
