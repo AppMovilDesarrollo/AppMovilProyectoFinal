@@ -2,13 +2,18 @@ package com.app.afinal.proyecto.proyectofinalapp.Formulario_Interface;
 
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.preference.PreferenceManager;
+import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,11 +23,18 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.app.afinal.proyecto.proyectofinalapp.Clientes_Interface.ClientesActivity;
+import com.app.afinal.proyecto.proyectofinalapp.Formulario_Completo.FormularioCompletoActivity;
 import com.app.afinal.proyecto.proyectofinalapp.R;
 import com.app.afinal.proyecto.proyectofinalapp.Tarjeta_Interface.TarjetasActivity;
 import com.app.afinal.proyecto.proyectofinalapp.basedatos.Clientes;
 import com.app.afinal.proyecto.proyectofinalapp.basedatos.ModeladoDB.ConexionHelper;
+import com.app.afinal.proyecto.proyectofinalapp.basedatos.Utility;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.Serializable;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -39,11 +51,15 @@ public class FormularioDataFragment extends Fragment {
     private EditText etxtSalary;
     private EditText etxtLugTra;
     private EditText etxtFDir;
+    private EditText tCopiCed;
     private Button bNext;
+    private Button bTomarCedula;
+    private String nombreFOTO;
 
     private ConexionHelper mConnexion;
 
     private static final int REQUEST_ADD_UPDATE_DELETE_CLIENT = 1;
+    private static final int REQUEST_CAMERA = 2;
 
     public FormularioDataFragment() {
     }
@@ -79,7 +95,9 @@ public class FormularioDataFragment extends Fragment {
         etxtSalary = (EditText) root.findViewById(R.id.etxtSalary);
         etxtLugTra = (EditText) root.findViewById(R.id.etxtLugTra);
         etxtFDir = (EditText) root.findViewById(R.id.etxtFDir);
+        tCopiCed = (EditText) root.findViewById(R.id.tCopiCed);
         bNext = (Button) root.findViewById(R.id.bNext);
+        bTomarCedula = (Button) root.findViewById(R.id.bTomarCedula);
 
         clientesData = new Clientes();
 
@@ -91,6 +109,13 @@ public class FormularioDataFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 guardarFormularioData();
+            }
+        });
+
+        bTomarCedula.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectImage();
             }
         });
 
@@ -156,6 +181,9 @@ public class FormularioDataFragment extends Fragment {
 
             etxtFDir.setError("Se debe ingresar una dirección");
 
+        } else if (tCopiCed.length() <= 0) {
+
+            tCopiCed.setError("La copia de la indentificación es requerida");
 
         } else {
 
@@ -164,9 +192,10 @@ public class FormularioDataFragment extends Fragment {
             clientesData.setNombre(etxtFName.getText().toString());
             clientesData.setCedula_Cliente(etxtFCed.getText().toString());
             clientesData.setTelefono(etxtFTel.getText().toString());
-            clientesData.setSalario(Double.parseDouble(etxtSalary.getText().toString()));
+            clientesData.setSalario(Integer.parseInt(etxtSalary.getText().toString()));
             clientesData.setLugarTrabajo(etxtLugTra.getText().toString());
             clientesData.setDireccion(etxtFDir.getText().toString());
+            clientesData.setFotografia(nombreFOTO);
 
             etxtFName.setText("");
             etxtFCed.setText("");
@@ -174,6 +203,7 @@ public class FormularioDataFragment extends Fragment {
             etxtSalary.setText("");
             etxtLugTra.setText("");
             etxtFDir.setText("");
+            tCopiCed.setText("");
 
 
             new agregarFormularioDataClientes().execute(clientesData);
@@ -198,6 +228,65 @@ public class FormularioDataFragment extends Fragment {
 
 
     }
+
+    private void selectImage() {
+        final CharSequence[] items = {getString(R.string.opt1foto),
+                getString(R.string.opt3foto)};
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle(getString(R.string.titFoto));
+        builder.setItems(items, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int item) {
+                boolean result = Utility.checkPermission(getContext());
+
+                if (items[item].equals(getString(R.string.opt1foto))) {
+                    if (result) {
+                        cameraIntent();
+                    }
+
+
+                } else if (items[item].equals(getString(R.string.opt3foto))) {
+                    dialog.dismiss();
+                }
+            }
+        });
+        builder.show();
+    }
+
+
+    public void cameraIntent() {
+        Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(intent, REQUEST_CAMERA);
+
+    }
+
+    private void onCaptureImageResult(Intent data) {
+        Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        thumbnail.compress(Bitmap.CompressFormat.PNG, 100, bytes);
+
+
+
+        nombreFOTO = System.currentTimeMillis() + ".png";
+        tCopiCed.setText(nombreFOTO);
+
+        File destination = new File(Environment.getExternalStorageDirectory(),nombreFOTO);
+
+        FileOutputStream fo;
+        try {
+            destination.createNewFile();
+            fo = new FileOutputStream(destination);
+            fo.write(bytes.toByteArray());
+            fo.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
 
     private void mostrarCompletarTarjeta(boolean result) {
 
@@ -229,26 +318,31 @@ public class FormularioDataFragment extends Fragment {
                 "Se ha guardado correctamente", Toast.LENGTH_SHORT).show();
     }
 
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-
         if (Activity.RESULT_OK == resultCode) {
+
             switch (requestCode) {
                 case REQUEST_ADD_UPDATE_DELETE_CLIENT:
 
-
-                    ClientesActivity.FORMULARIOCOMPLETO = true;
+                    showSuccess();
+                    ClientesActivity.setDataGlobal(this.getContext(), "true", clienteIDMemoria);
 
                     getActivity().setResult(Activity.RESULT_OK);
                     getActivity().finish();
                     break;
+                case REQUEST_CAMERA:
+                    onCaptureImageResult(data);
+                    break;
             }
         } else {
+            showError();
+            ClientesActivity.setDataGlobal(this.getContext(), "false", clienteIDMemoria);
             getActivity().setResult(Activity.RESULT_CANCELED);
             getActivity().finish();
         }
-
     }
 
 }

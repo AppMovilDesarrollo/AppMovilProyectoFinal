@@ -1,10 +1,7 @@
-package com.app.afinal.proyecto.proyectofinalapp.Formulario_Interface;
+package com.app.afinal.proyecto.proyectofinalapp.Formulario_Completo;
 
 
 import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -16,33 +13,27 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.app.afinal.proyecto.proyectofinalapp.Clientes_Interface.ClientesActivity;
 import com.app.afinal.proyecto.proyectofinalapp.R;
-import com.app.afinal.proyecto.proyectofinalapp.Tarjeta_Interface.TarjetasActivity;
 import com.app.afinal.proyecto.proyectofinalapp.basedatos.Clientes;
+import com.app.afinal.proyecto.proyectofinalapp.basedatos.ModeladoDB.ClientesConstract;
 import com.app.afinal.proyecto.proyectofinalapp.basedatos.ModeladoDB.ConexionHelper;
 import com.app.afinal.proyecto.proyectofinalapp.basedatos.Tarjetas;
 
-import java.io.Serializable;
-
-import static android.content.Context.MODE_PRIVATE;
-
-
-public class FormularioDataFragmentCompleto extends Fragment {
+public class FormularioCompletoFragment extends Fragment {
 
     private String clienteIDMemoria;
+    private String clienteCedulaMemoria;
 
-    private Clientes clientesData;
     private EditText etxtFName2;
     private EditText etxtFCed2;
     private EditText etxtFTel2;
     private EditText etxtSalary2;
     private EditText etxtLugTra2;
     private EditText etxtFDir2;
-    private Button bCerrar2;
+    private FloatingActionButton bSalirFormulario;
     private EditText etxtNumTar2;
     private EditText expFecha2;
     private EditText etxtMonto2;
@@ -53,14 +44,15 @@ public class FormularioDataFragmentCompleto extends Fragment {
 
     private static final int REQUEST_ADD_UPDATE_DELETE_CLIENT = 1;
 
-    public FormularioDataFragmentCompleto() {
+    public FormularioCompletoFragment() {
         // Required empty public constructor
     }
 
-    public static FormularioDataFragmentCompleto newInstance(String clienteID) {
-        FormularioDataFragmentCompleto fragment = new FormularioDataFragmentCompleto();
+    public static FormularioCompletoFragment newInstance(String clienteID, String cedula) {
+        FormularioCompletoFragment fragment = new FormularioCompletoFragment();
         Bundle args = new Bundle();
         args.putString("CLIENTEID", clienteID);
+        args.putString("CEDULA", cedula);
         fragment.setArguments(args);
         return fragment;
     }
@@ -71,6 +63,7 @@ public class FormularioDataFragmentCompleto extends Fragment {
 
         if (getArguments() != null) {
             clienteIDMemoria = getArguments().getString("CLIENTEID");
+            clienteCedulaMemoria = getArguments().getString("CEDULA");
         }
 
     }
@@ -78,7 +71,7 @@ public class FormularioDataFragmentCompleto extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.fragment_formulario_data_fragment_completo, container, false);
+        View root = inflater.inflate(R.layout.fragment_formulario_completo, container, false);
 
         etxtFName2 = (EditText) root.findViewById(R.id.etxtFName2);
         etxtFCed2 = (EditText) root.findViewById(R.id.etxtFCed2);
@@ -91,22 +84,20 @@ public class FormularioDataFragmentCompleto extends Fragment {
         etxtMonto2 = (EditText) root.findViewById(R.id.etxtMonto2);
         rdBtn12 = (RadioButton) root.findViewById(R.id.rdBtn12);
         rdBtn22 = (RadioButton) root.findViewById(R.id.rdBtn22);
-        bCerrar2 = (Button) root.findViewById(R.id.bCerrar2);
+        bSalirFormulario = (FloatingActionButton) getActivity().findViewById(R.id.bSalirFormulario);
 
-        clientesData = new Clientes();
-
-        mConnexion = new ConexionHelper(getActivity());
-
-        cargarClientes();
-        cargarTarjetas();
-
-
-        bCerrar2.setOnClickListener(new View.OnClickListener() {
+          bSalirFormulario.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 salirCompletos();
             }
         });
+
+
+        mConnexion = new ConexionHelper(getActivity());
+
+        cargarClientes();
+        cargarTarjetas();
 
         return root;
     }
@@ -114,8 +105,6 @@ public class FormularioDataFragmentCompleto extends Fragment {
     public void salirCompletos() {
 
         getActivity().setResult(Activity.RESULT_OK);
-
-        ClientesActivity.FORMULARIOCOMPLETO = false;
 
         getActivity().finish();
 
@@ -143,7 +132,7 @@ public class FormularioDataFragmentCompleto extends Fragment {
 
         @Override
         protected Cursor doInBackground(Void... voids) {
-            return mConnexion.tarjetasByCedula(clientesData.getCedula_Cliente());
+            return mConnexion.tarjetasByCedula(clienteCedulaMemoria);
         }
 
         @Override
@@ -174,14 +163,12 @@ public class FormularioDataFragmentCompleto extends Fragment {
 
     public void mostrarCliente(Clientes cliente) {
 
-        clientesData = cliente;
-
-        etxtFName2.setText(clientesData.getNombre());
-        etxtFCed2.setText(clientesData.getCedula_Cliente());
-        etxtFTel2.setText(clientesData.getTelefono());
-        etxtSalary2.setText((int) clientesData.getSalario());
-        etxtLugTra2.setText(clientesData.getLugarTrabajo());
-        etxtFDir2.setText(clientesData.getDireccion());
+        etxtFName2.setText(cliente.getNombre());
+        etxtFCed2.setText(cliente.getCedula_Cliente());
+        etxtFTel2.setText(cliente.getTelefono());
+        etxtSalary2.setText(String.valueOf(cliente.getSalario()));
+        etxtLugTra2.setText(cliente.getLugarTrabajo());
+        etxtFDir2.setText(cliente.getDireccion());
 
 
     }
@@ -189,6 +176,8 @@ public class FormularioDataFragmentCompleto extends Fragment {
     public void mostrarTarjeta(Tarjetas tarjeta) {
 
         etxtNumTar2.setText(tarjeta.getNumeroTarjeta());
+        etxtNumTar2.setTransformationMethod(new MascaraTarjeta());
+
         expFecha2.setText(tarjeta.getFechaVencimiento());
         etxtMonto2.setText(String.valueOf(tarjeta.getMonto()));
         if (tarjeta.getTipoTarjeta()==1) {

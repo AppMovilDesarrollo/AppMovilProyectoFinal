@@ -11,6 +11,7 @@ import android.media.Image;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -30,6 +31,7 @@ import com.app.afinal.proyecto.proyectofinalapp.basedatos.ModeladoDB.ConexionHel
 import com.bumptech.glide.Glide;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -47,6 +49,8 @@ public class DetalleClienteFragment extends Fragment {
     private TextView etxtDCed;
     private TextView etxtDTel;
     private TextView etxtDDir;
+
+    private Clientes clientesData;
 
     private Button bLlamar;
     private Button bSMS;
@@ -126,6 +130,7 @@ public class DetalleClienteFragment extends Fragment {
     public void callPantallaFormulario() {
         Intent pantallaFormulario= new Intent(getActivity(), FormularioDatosActivity.class);
         pantallaFormulario.putExtra(ClientesActivity.CLIENTEID, clienteIDMemoria);
+        pantallaFormulario.putExtra(ClientesActivity.CLIENTECEDULA, clientesData.getCedula_Cliente());
         startActivityForResult(pantallaFormulario, REQUEST_ADD_UPDATE_DELETE_CLIENT);
     }
 
@@ -145,28 +150,47 @@ public class DetalleClienteFragment extends Fragment {
 
     private void mostrarCliente(Clientes cliente) {
 
+        clientesData = cliente;
        // tituloCampoImgClientesDetallesActivity.setTitle(cliente.getNombre());
 
         String fotografia = "";
 
-        if(cliente.getFotografia() == null) {
+        if(cliente.getFotografia().equalsIgnoreCase("")) {
             fotografia ="foto1.jpg";
+
+            Bitmap bitmap = null;
+
+            try{
+                FileInputStream fileInputStream =
+                        new FileInputStream(getContext().getFilesDir().getPath()+ "/"+fotografia);
+                bitmap = BitmapFactory.decodeStream(fileInputStream);
+
+                imgImagenCliente_Foto.setImageBitmap(bitmap);
+
+            }catch (IOException io){
+                io.printStackTrace();
+            }
+
         } else {
             fotografia = cliente.getFotografia();
+
+            Bitmap bitmap = null;
+
+            File archivo = new File(Environment.getExternalStorageDirectory(),fotografia);
+            try{
+                FileInputStream fileInputStream =
+                        new FileInputStream(archivo);
+                bitmap = BitmapFactory.decodeStream(fileInputStream);
+
+                imgImagenCliente_Foto.setImageBitmap(bitmap);
+
+            }catch (IOException io){
+                io.printStackTrace();
+            }
+
         }
 
-        Bitmap bitmap = null;
 
-        try{
-            FileInputStream fileInputStream =
-                    new FileInputStream(getContext().getFilesDir().getPath()+ "/"+fotografia);
-            bitmap = BitmapFactory.decodeStream(fileInputStream);
-
-            imgImagenCliente_Foto.setImageBitmap(bitmap);
-
-        }catch (IOException io){
-            io.printStackTrace();
-        }
 
 
 

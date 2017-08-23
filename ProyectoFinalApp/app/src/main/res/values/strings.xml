@@ -32,6 +32,7 @@
     <string name="strPantallaConfiguracionClientes">Agregar Clientes</string>
     <string name="strPantallaFormulario">Completar Formulario</string>
     <string name="strPantallaTarjetas">Completar Tarjetas</string>
+    <string name="strPantallaFormularioCompleto">Detalles del formulario</string>
     <string name="tFotoString">Guardar copia de cédula</string>
     <string name="bSiguienteTarjeta">Siguiente</string>
     <string name="btnFoto">Foto</string>
@@ -39,6 +40,7 @@
     <string name="opt1foto">Tomar Foto</string>
     <string name="opt2foto">Seleccionar desde Libreria</string>
     <string name="opt3foto">Cancelar</string>
+    <string name="tarjetaMask">MMAA</string>
 
     <string name="action_settings">Settings</string>
     <string name="title_activity_configuracion_clientes">ConfiguracionClientesActivity</string>
@@ -48,5 +50,6 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_tarjetas">Formas de Pago</string>
+    <string name="title_activity_formulario_completo">FormularioCompletoActivity</string>
 
 </resources>

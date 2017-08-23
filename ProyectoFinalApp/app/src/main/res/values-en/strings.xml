@@ -30,7 +30,8 @@
     <string name="strPantallaClientes">Clients</string>
     <string name="strPantallaConfiguracionClientes">Add Clients</string>
     <string name="strPantallaFormulario">Complete form</string>
-    <string name="strPantallaTarjetas">Completar Tarjetas</string>
+    <string name="strPantallaTarjetas">Complete Cards</string>
+    <string name="strPantallaFormularioCompleto">Form details</string>
     <string name="tFotoString">Save identification</string>
     <string name="bSiguienteTarjeta">Next</string>
     <string name="btnFoto">Photo</string>
@@ -38,7 +39,7 @@
     <string name="opt1foto">Take Foto</string>
     <string name="opt2foto">Choose from Library</string>
     <string name="opt3foto">Cancel</string>
-
+    <string name="tarjetaMask">MMAA</string>
 
     <string name="action_settings">Settings</string>
     <string name="title_activity_configuracion_clientes">ConfiguracionClientesActivity</string>

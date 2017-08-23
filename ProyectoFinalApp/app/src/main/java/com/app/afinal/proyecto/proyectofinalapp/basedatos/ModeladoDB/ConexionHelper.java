@@ -40,7 +40,7 @@ public class ConexionHelper extends SQLiteOpenHelper {
 
         db.execSQL("CREATE TABLE " + TarjetasConstract.TarjetasEntry.TABLE_NAME + "("
                 + TarjetasConstract.TarjetasEntry.ID + " INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,"
-                + TarjetasConstract.TarjetasEntry.Cedula_Cliente + " TEXT NOT NULL,"
+                + TarjetasConstract.TarjetasEntry.Cedula_Cliente + " TEXT NOT NULL UNIQUE,"
                 + TarjetasConstract.TarjetasEntry.NumeroTarjeta + " TEXT NOT NULL,"
                 + TarjetasConstract.TarjetasEntry.FechaVencimiento + " TEXT NOT NULL,"
                 + TarjetasConstract.TarjetasEntry.Monto + " NUMERIC NOT NULL,"
@@ -50,7 +50,7 @@ public class ConexionHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE " + ClientesConstract.ClientesEntry.TABLE_NAME + " ("
                 + ClientesConstract.ClientesEntry.ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                 + ClientesConstract.ClientesEntry.Nombre + " TEXT NOT NULL,"
-                + ClientesConstract.ClientesEntry.Cedula_Cliente + " NUMERIC NOT NULL UNIQUE,"
+                + ClientesConstract.ClientesEntry.Cedula_Cliente + " TEXT NOT NULL UNIQUE,"
                 + ClientesConstract.ClientesEntry.LugarTrabajo + " TEXT,"
                 + ClientesConstract.ClientesEntry.Salario + " NUMERIC DEFAULT 0,"
                 + ClientesConstract.ClientesEntry.Telefono + " TEXT NOT NULL,"
@@ -133,10 +133,10 @@ public class ConexionHelper extends SQLiteOpenHelper {
                 null,
                 tarjetas1.toContentValues());
 
-        db.insert(
-                TarjetasConstract.TarjetasEntry.TABLE_NAME,
-                null,
-                tarjetas2.toContentValues());
+        //db.insert(
+          //      TarjetasConstract.TarjetasEntry.TABLE_NAME,
+            //    null,
+              //  tarjetas2.toContentValues());
 
 
     }
@@ -180,17 +180,9 @@ public class ConexionHelper extends SQLiteOpenHelper {
                         null);
     }
 
-    public Cursor clientesById(String clienteID) {
-        Cursor c = getReadableDatabase().query(
-                ClientesConstract.ClientesEntry.TABLE_NAME,
-                null,
-                ClientesConstract.ClientesEntry.ID + " LIKE ?",
-                new String[]{clienteID},
-                null,
-                null,
-                null);
-        return c;
-    }
+
+
+
 
 
     public long insertTarjetas(Tarjetas tarjetas) {
@@ -244,5 +236,16 @@ public class ConexionHelper extends SQLiteOpenHelper {
         return c;
     }
 
+    public Cursor clientesById(String clienteID) {
+        Cursor c = getReadableDatabase().query(
+                ClientesConstract.ClientesEntry.TABLE_NAME,
+                null,
+                ClientesConstract.ClientesEntry.ID + " = ?",
+                new String[]{clienteID},
+                null,
+                null,
+                null);
+        return c;
+    }
 
 }

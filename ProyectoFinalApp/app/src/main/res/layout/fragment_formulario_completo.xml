@@ -6,7 +6,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.app.afinal.proyecto.proyectofinalapp.Formulario_Interface.FormularioDataFragmentCompleto">
+        tools:context="com.app.afinal.proyecto.proyectofinalapp.Formulario_Completo.FormularioCompletoFragment">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -40,7 +40,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="text"
-                android:text="" />
+                android:enabled="false" />
 
             <TextView
                 android:id="@+id/txtFCed2"
@@ -54,7 +54,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="text"
-                android:text="" />
+                android:enabled="false" />
 
             <TextView
                 android:id="@+id/txtFTel2"
@@ -67,14 +67,16 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <EditText
-                    android:id="@+id/etxtFTel2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="number"
-                    android:maxLength="12" />
             </LinearLayout>
+
+            <EditText
+                android:id="@+id/etxtFTel2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:enabled="false"
+                android:inputType="number"
+                android:maxLength="12" />
 
             <TextView
                 android:id="@+id/txtSalary2"
@@ -87,8 +89,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="numberDecimal"
-                android:text="" />
+                android:inputType="number"
+                android:enabled="false"
+                />
 
             <TextView
                 android:id="@+id/txtLugTra2"
@@ -102,7 +105,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="text"
-                android:text="" />
+                android:enabled="false" />
 
             <TextView
                 android:id="@+id/txtFDir2"
@@ -117,7 +120,8 @@
                 android:layout_weight="0.25"
                 android:ems="10"
                 android:inputType="text"
-                tools:ignore="InefficientWeight" />
+                tools:ignore="InefficientWeight"
+                android:enabled="false"/>
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -151,7 +155,8 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:inputType="number"
-                    android:maxLength="16" />
+                    android:maxLength="16"
+                    android:enabled="false"/>
 
                 <TextView
                     android:id="@+id/txtExpDat2"
@@ -176,7 +181,8 @@
                         android:inputType="text"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:layout_weight="0.15" />
+                        android:layout_weight="0.15"
+                        android:enabled="false"/>
 
                     <TextView
                         android:id="@+id/expError2"
@@ -210,16 +216,19 @@
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
                             android:id="@+id/grupoRadio2"
-                            android:checkedButton="@+id/rdBtn12">
+                            android:checkedButton="@+id/rdBtn12"
+                            android:enabled="false">
                             <RadioButton
                                 android:id="@+id/rdBtn12"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:enabled="false"
                                 />
                             <RadioButton
                                 android:id="@+id/rdBtn22"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:enabled="false"
                                 />
                         </RadioGroup>
                     </LinearLayout>
@@ -270,18 +279,13 @@
                     android:layout_height="wrap_content"
                     android:inputType="number"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"/>
-
-                <Button
-                    android:id="@+id/bCerrar2"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="@string/btnSave.Content"/>
+                    android:layout_marginRight="10dp"
+                    android:enabled="false"/>
             </LinearLayout>
 
 
         </LinearLayout>
 
-
     </FrameLayout>
+
 </ScrollView>

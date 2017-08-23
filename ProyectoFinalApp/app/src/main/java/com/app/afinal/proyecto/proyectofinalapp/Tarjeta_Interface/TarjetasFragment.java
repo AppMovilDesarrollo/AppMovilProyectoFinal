@@ -138,7 +138,7 @@ public class TarjetasFragment extends Fragment {
             tarjetas.setCedula_Cliente(clienteCedulaObtenida);
             tarjetas.setNumeroTarjeta(String.valueOf(etxtNumTar.getText()));
             tarjetas.setFechaVencimiento(String.valueOf(expFecha.getText()));
-            tarjetas.setMonto(Double.parseDouble(String.valueOf(etxtMonto.getText())));
+            tarjetas.setMonto(Integer.parseInt(String.valueOf(etxtMonto.getText())));
             tarjetas.setTipoTarjeta(radio);
 
             new agregarFormularioDataTarjetas().execute(tarjetas);
@@ -157,12 +157,12 @@ public class TarjetasFragment extends Fragment {
 
         @Override
         protected void onPostExecute(Boolean result) {
-            mostraListaClintesFinalizar(result);
+            mostraListaClientesFinalizar(result);
         }
 
     }
 
-    private void mostraListaClintesFinalizar(boolean result) {
+    private void mostraListaClientesFinalizar(boolean result) {
 
         if (!result) {
 

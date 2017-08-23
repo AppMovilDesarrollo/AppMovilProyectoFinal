@@ -36,6 +36,10 @@
         <activity
             android:name=".Tarjeta_Interface.TarjetasActivity"
             android:label="@string/title_activity_tarjetas"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".Formulario_Completo.FormularioCompletoActivity"
+            android:label="@string/title_activity_formulario_completo"
             android:theme="@style/AppTheme"></activity>
     </application>
 

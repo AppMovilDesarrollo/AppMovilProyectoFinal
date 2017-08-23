@@ -1,4 +1,4 @@
-package com.app.afinal.proyecto.proyectofinalapp.Formulario_Interface;
+package com.app.afinal.proyecto.proyectofinalapp.basedatos;
 
 import android.Manifest;
 import android.annotation.TargetApi;
@@ -16,7 +16,7 @@ import android.support.v7.app.AlertDialog;
  */
 
 public class Utility {
-    public static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 123;
+    public static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 1;
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     public static boolean checkPermission(final Context context)
     {
@@ -41,7 +41,7 @@ public class Utility {
                 } else {
                     ActivityCompat.requestPermissions((Activity) context, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
                 }
-                return false;
+                return true;
             } else {
                 return true;
             }

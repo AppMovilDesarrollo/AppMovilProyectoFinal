@@ -17,13 +17,13 @@ public class Tarjetas {
 	private String Cedula_Cliente;
     private String NumeroTarjeta;
     private String FechaVencimiento;
-    private double Monto;
+    private int Monto;
     private int TipoTarjeta;
 
     public Tarjetas() {
     }
 
-    public Tarjetas(int ID, String cedula_Cliente, String numeroTarjeta, String fechaVencimiento, double monto, int tipoTarjeta) {
+    public Tarjetas(int ID, String cedula_Cliente, String numeroTarjeta, String fechaVencimiento, int monto, int tipoTarjeta) {
         this.ID = ID;
         Cedula_Cliente = cedula_Cliente;
         NumeroTarjeta = numeroTarjeta;
@@ -54,7 +54,7 @@ public class Tarjetas {
         Cedula_Cliente =  cursor.getString(cursor.getColumnIndex(TarjetasConstract.TarjetasEntry.Cedula_Cliente));
         NumeroTarjeta = cursor.getString(cursor.getColumnIndex(TarjetasConstract.TarjetasEntry.NumeroTarjeta));
         FechaVencimiento = cursor.getString(cursor.getColumnIndex(TarjetasConstract.TarjetasEntry.FechaVencimiento));
-        Monto = cursor.getDouble(cursor.getColumnIndex(TarjetasConstract.TarjetasEntry.Monto));
+        Monto = cursor.getInt(cursor.getColumnIndex(TarjetasConstract.TarjetasEntry.Monto));
         TipoTarjeta = cursor.getInt(cursor.getColumnIndex(TarjetasConstract.TarjetasEntry.TipoTarjeta));
     }
 
@@ -99,11 +99,11 @@ public class Tarjetas {
     }
 
 
-    public Double getMonto() {
+    public int getMonto() {
         return Monto;
     }
 
-    public void setMonto(Double monto) {
+    public void setMonto(int monto) {
         Monto = monto;
     }
 }

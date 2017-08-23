@@ -15,18 +15,17 @@ public class Clientes {
     private String Nombre;
     private String Cedula_Cliente;
     private String LugarTrabajo;
-    private double Salario;
+    private int Salario;
     private String Telefono;
     private String Direccion;
     private String Fotografia;
-    private Cursor cursor;
 
 
     public Clientes() {
 
     }
 
-    public Clientes(int ID, String nombre, String cedula_Cliente, String lugarTrabajo, double salario, String telefono, String direccion, String fotografia) {
+    public Clientes(int ID, String nombre, String cedula_Cliente, String lugarTrabajo, int salario, String telefono, String direccion, String fotografia) {
         this.ID = ID;
         Nombre = nombre;
         Cedula_Cliente = cedula_Cliente;
@@ -56,25 +55,16 @@ public class Clientes {
 
     public Clientes(Cursor cursor) {
 
-        this.cursor = cursor;
-        ID = cursor.getInt(cursor.getColumnIndex(ClientesConstract.ClientesEntry.ID));
+        this.ID = cursor.getInt(cursor.getColumnIndex(ClientesConstract.ClientesEntry.ID));
         Nombre = cursor.getString(cursor.getColumnIndex(ClientesConstract.ClientesEntry.Nombre));
         Cedula_Cliente = cursor.getString(cursor.getColumnIndex(ClientesConstract.ClientesEntry.Cedula_Cliente));
         LugarTrabajo = cursor.getString(cursor.getColumnIndex(ClientesConstract.ClientesEntry.LugarTrabajo));
-        Salario = cursor.getDouble(cursor.getColumnIndex(ClientesConstract.ClientesEntry.Salario));
+        Salario = cursor.getInt(cursor.getColumnIndex(ClientesConstract.ClientesEntry.Salario));
         Telefono = cursor.getString(cursor.getColumnIndex(ClientesConstract.ClientesEntry.Telefono));
         Direccion = cursor.getString(cursor.getColumnIndex(ClientesConstract.ClientesEntry.Direccion));
         Fotografia = cursor.getString(cursor.getColumnIndex(ClientesConstract.ClientesEntry.Fotografia));
 
 
-    }
-
-    public Cursor getCursor() {
-        return cursor;
-    }
-
-    public void setCursor(Cursor cursor) {
-        this.cursor = cursor;
     }
 
     public int getID() {
@@ -109,11 +99,11 @@ public class Clientes {
         LugarTrabajo = lugarTrabajo;
     }
 
-    public double getSalario() {
+    public int getSalario() {
         return Salario;
     }
 
-    public void setSalario(double salario) {
+    public void setSalario(int salario) {
         Salario = salario;
     }
 

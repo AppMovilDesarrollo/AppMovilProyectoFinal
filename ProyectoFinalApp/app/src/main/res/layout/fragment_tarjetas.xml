@@ -42,7 +42,8 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:inputType="number"
-                android:maxLength="16" />
+                android:maxLength="16"
+                android:digits="1234567890"/>
 
             <TextView
                 android:id="@+id/txtExpDat"
@@ -63,7 +64,7 @@
                     android:id="@+id/expFecha"
                     android:layout_width="40dp"
                     android:layout_height="wrap_content"
-                    android:maxLength="5"
+                    android:maxLength="4"
                     android:inputType="text"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
@@ -73,7 +74,8 @@
                     android:id="@+id/expError"
                     android:layout_width="30dp"
                     android:layout_height="wrap_content"
-                    android:visibility="gone"/>
+                    android:text="@string/tarjetaMask"
+                    android:layout_weight="0.16" />
             </LinearLayout>
 
 
@@ -159,6 +161,7 @@
                 android:id="@+id/etxtMonto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:maxLength="10"
                 android:inputType="number"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"/>
