@@ -188,7 +188,8 @@
                         android:id="@+id/expError2"
                         android:layout_width="30dp"
                         android:layout_height="wrap_content"
-                        android:visibility="gone"/>
+                        android:text="@string/tarjetaMask"
+                        android:layout_weight="0.16" />
                 </LinearLayout>
 
 

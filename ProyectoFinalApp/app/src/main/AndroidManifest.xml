@@ -7,9 +7,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_control"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_control"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
@@ -24,23 +24,28 @@
         <activity
             android:name=".Clientes_Interface.Clientes_Detalles.DetallesClientesActivity"
             android:label="@string/title_activity_detalles_clientes"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Clientes_Interface.Clientes_Configuracion.ConfiguracionClientesActivity"
             android:label="@string/title_activity_configuracion_clientes"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Formulario_Interface.FormularioDatosActivity"
             android:label="@string/title_activity_formulario_datos"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Tarjeta_Interface.TarjetasActivity"
             android:label="@string/title_activity_tarjetas"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Formulario_Completo.FormularioCompletoActivity"
             android:label="@string/title_activity_formulario_completo"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

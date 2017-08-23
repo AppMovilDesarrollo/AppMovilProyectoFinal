@@ -117,28 +117,6 @@ public class ClientesFragment extends Fragment {
         @Override
         protected Cursor doInBackground(Void... params) {
 
-
-            Cursor cursor = mConnexion.allClientes();
-
-            Clientes clasdwa = new Clientes();
-            clasdwa.setID(cursor.getCount() + 1);
-            clasdwa.setCedula_Cliente("602950169");
-            clasdwa.setNombre("Mitilene Morales Caballero");
-            clasdwa.setDireccion("Heredia, Heredia, Corazón de Jesús");
-            clasdwa.setTelefono("+50689962662");
-
-            Clientes clasda = new Clientes();
-            clasda.setID(cursor.getCount() + 2);
-            clasda.setCedula_Cliente("602130169");
-            clasda.setNombre("Bienvenido Cespedes Anchia");
-            clasda.setDireccion("Ciudad Neilly Puntarenas");
-            clasda.setTelefono("+50688538875");
-
-            mConnexion.insertClientes(clasdwa);
-            mConnexion.insertClientes(clasda);
-
-
-
             return mConnexion.allClientes();
         }
 

@@ -155,7 +155,7 @@ public class DetalleClienteFragment extends Fragment {
 
         String fotografia = "";
 
-        if(cliente.getFotografia().equalsIgnoreCase("")) {
+        if(cliente.getFotografia() == null) {
             fotografia ="foto1.jpg";
 
             Bitmap bitmap = null;
