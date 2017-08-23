@@ -202,7 +202,7 @@ public class DetalleClienteFragment extends Fragment {
 
     private void showLoadError() {
         Toast.makeText(getActivity(),
-                "Error al cargar información", Toast.LENGTH_SHORT).show();
+                getString(R.string.errorMessageCargar), Toast.LENGTH_SHORT).show();
     }
 
     private class CargarClienteID extends AsyncTask<Void, Void, Cursor> {
@@ -234,6 +234,7 @@ public class DetalleClienteFragment extends Fragment {
         if (Activity.RESULT_OK == resultCode) {
             switch (requestCode) {
                 case REQUEST_ADD_UPDATE_DELETE_CLIENT:
+                    getActivity().setResult(Activity.RESULT_OK);
                     cargarCliente();
                     break;
             }

@@ -113,20 +113,20 @@ public class TarjetasFragment extends Fragment {
 
         if (etxtNumTar.length() <= 0) {
 
-            etxtNumTar.setError("El campo número de tarjeta debe ser mayor a 0");
+            etxtNumTar.setError(getString(R.string.tarjetaCampoRequerido));
 
         } else if (etxtNumTar.length() <= 15) {
 
 
-            etxtNumTar.setError("El campo número de tarjeta debe ser mayor a 15");
+            etxtNumTar.setError(getString(R.string.tarjetaCampoRequerido2));
 
         } else if (expFecha.length() <= 0) {
 
-            expFecha.setError("Digite fecha de vencimiento de tarjeta");
+            expFecha.setError(getString(R.string.fechaCampoRequerido2));
 
         } else if (etxtMonto.length() <= 0) {
 
-            etxtMonto.setError("El monto debe ser mayor a 0");
+            etxtMonto.setError(getString(R.string.montoCampoRequerido));
 
         } else {
 
@@ -179,11 +179,11 @@ public class TarjetasFragment extends Fragment {
 
     private void showError() {
         Toast.makeText(getActivity(),
-                "Error al agregar nueva información", Toast.LENGTH_SHORT).show();
+                getString(R.string.errorMessage), Toast.LENGTH_SHORT).show();
     }
 
     private void showSuccess() {
         Toast.makeText(getActivity(),
-                "Se ha guardado correctamente", Toast.LENGTH_SHORT).show();
+                getString(R.string.saveMessage), Toast.LENGTH_SHORT).show();
     }
 }

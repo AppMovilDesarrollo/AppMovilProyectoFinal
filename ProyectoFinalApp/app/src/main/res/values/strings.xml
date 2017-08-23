@@ -42,6 +42,27 @@
     <string name="opt3foto">Cancelar</string>
     <string name="tarjetaMask">MMAA</string>
 
+    <string name="errorMessage">Error al agregar nueva información</string>
+    <string name="errorMessageCargar">Error al cargar nueva información</string>
+    <string name="errorMessageFormulario">Ya la información ha sido completa</string>
+    <string name="saveMessage">Se ha guardado correctamente</string>
+    <string name="saveMessageClient">Cliente guardado correctamente</string>
+
+
+    <string name="nombreCampoRequerido">El campo nombre es requerido</string>
+    <string name="cedCampoRequerido">Debe ingresar un número de cédula</string>
+    <string name="telCampoRequerido">Digite un teléfono para localizar al cliente</string>
+    <string name="direccionCampoRequerido">El campo dirección es requerido</string>
+    <string name="salarioCampoRequerido">El monto del salario debe ser mayor a 0</string>
+    <string name="trabajoCampoRequerido">Debe ingresar un lugar de trabajo</string>
+    <string name="fotoCampoRequerido">Debe tomar una copia de la cédula</string>
+    <string name="tarjetaCampoRequerido">El campo número de tarjeta debe ser mayor de 0</string>
+    <string name="tarjetaCampoRequerido2">El campo número de tarjeta debe ser mayor de 15</string>
+    <string name="fechaCampoRequerido2">Digite la fecha de vencimiento de la tarjeta</string>
+    <string name="montoCampoRequerido">El monto debe ser mayor a 0</string>
+
+
+
     <string name="action_settings">Settings</string>
     <string name="title_activity_configuracion_clientes">ConfiguracionClientesActivity</string>
     <string name="title_activity_detalles_clientes"></string>

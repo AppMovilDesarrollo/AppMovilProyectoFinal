@@ -50,7 +50,7 @@ public class FormularioDatosActivity extends AppCompatActivity {
         } else {
 
             Toast.makeText(this,
-                    "Ya la información ha sido completa", Toast.LENGTH_SHORT).show();
+                    getString(R.string.errorMessageFormulario), Toast.LENGTH_SHORT).show();
 
             Intent pantallaFormularioCompleto = new Intent(this, FormularioCompletoActivity.class);
             pantallaFormularioCompleto.putExtra(ClientesActivity.CLIENTEID, id);

@@ -192,12 +192,12 @@ public class FormularioCompletoFragment extends Fragment {
 
     private void showError() {
         Toast.makeText(getActivity(),
-                "Error al agregar nueva información", Toast.LENGTH_SHORT).show();
+               getString(R.string.errorMessage), Toast.LENGTH_SHORT).show();
     }
 
     private void showSuccess() {
         Toast.makeText(getActivity(),
-                "Se ha guardado correctamente", Toast.LENGTH_SHORT).show();
+                getString(R.string.saveMessage), Toast.LENGTH_SHORT).show();
     }
 
 

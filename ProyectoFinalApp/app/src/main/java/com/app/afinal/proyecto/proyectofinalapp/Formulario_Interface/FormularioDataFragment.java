@@ -159,31 +159,31 @@ public class FormularioDataFragment extends Fragment {
 
         if (etxtFName.length() <= 0) {
 
-            etxtFName.setError("El campo nombre es requerido");
+            etxtFName.setError(getString(R.string.nombreCampoRequerido));
 
         } else if (etxtFCed.length() <= 0) {
 
-            etxtFCed.setError("Debe ingresar un número de cédula");
+            etxtFCed.setError(getString(R.string.cedCampoRequerido));
 
         } else if (etxtFTel.length() <= 0) {
 
-            etxtFTel.setError("Digite un teléfono para localizar al cliente");
+            etxtFTel.setError(getString(R.string.telCampoRequerido));
 
         } else if (etxtSalary.length() <= 0) {
 
-            etxtSalary.setError("El monto del salario debe ser mayor a 0");
+            etxtSalary.setError(getString(R.string.salarioCampoRequerido));
 
         } else if (etxtLugTra.length() <= 0) {
 
-            etxtLugTra.setError("Debe ingresar el lugar de trabajo");
+            etxtLugTra.setError(getString(R.string.trabajoCampoRequerido));
 
         } else if (etxtFDir.length() <= 0) {
 
-            etxtFDir.setError("Se debe ingresar una dirección");
+            etxtFDir.setError(getString(R.string.direccionCampoRequerido));
 
         } else if (tCopiCed.length() <= 0) {
 
-            tCopiCed.setError("La copia de la indentificación es requerida");
+            tCopiCed.setError(getString(R.string.fotoCampoRequerido));
 
         } else {
 
@@ -310,12 +310,12 @@ public class FormularioDataFragment extends Fragment {
 
     private void showError() {
         Toast.makeText(getActivity(),
-                "Error al agregar nueva información", Toast.LENGTH_SHORT).show();
+                getString(R.string.errorMessage), Toast.LENGTH_SHORT).show();
     }
 
     private void showSuccess() {
         Toast.makeText(getActivity(),
-                "Se ha guardado correctamente", Toast.LENGTH_SHORT).show();
+                getString(R.string.saveMessage), Toast.LENGTH_SHORT).show();
     }
 
 

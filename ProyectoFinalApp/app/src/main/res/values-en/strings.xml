@@ -41,6 +41,26 @@
     <string name="opt3foto">Cancel</string>
     <string name="tarjetaMask">MMAA</string>
 
+    <string name="errorMessage">Error adding new information</string>
+    <string name="errorMessageCargar">Error loading new information</string>
+    <string name="errorMessageFormulario">The information has already been complete</string>
+    <string name="saveMessage">Saved successfully</string>
+    <string name="saveMessageClient">Customer successfully saved</string>
+
+
+    <string name="nombreCampoRequerido">The field name is required</string>
+    <string name="cedCampoRequerido">You must enter your ID</string>
+    <string name="telCampoRequerido">Enter a phone to locate the client</string>
+    <string name="direccionCampoRequerido">The address field is required </string>
+    <string name="salarioCampoRequerido">Salary amount must be greater than 0</string>
+    <string name="trabajoCampoRequerido">You must enter a work place</string>
+    <string name="fotoCampoRequerido">You must take a copy of the ID</string>
+    <string name="tarjetaCampoRequerido">The card number field must be greater than 0</string>
+    <string name="tarjetaCampoRequerido2">The card number field must be greater than 15</string>
+    <string name="fechaCampoRequerido2">Enter the expiration date of the card</string>
+    <string name="montoCampoRequerido">The amount must be greater than 0</string>
+
+
     <string name="action_settings">Settings</string>
     <string name="title_activity_configuracion_clientes">ConfiguracionClientesActivity</string>
     <string name="title_activity_detalles_clientes"></string>

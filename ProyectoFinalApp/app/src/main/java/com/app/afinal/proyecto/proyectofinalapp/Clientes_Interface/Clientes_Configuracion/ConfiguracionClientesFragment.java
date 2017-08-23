@@ -93,19 +93,19 @@ public class ConfiguracionClientesFragment extends Fragment {
 
         if (txtNombre.length() <= 0) {
 
-            txtNombre.setError("El campo nombre es requerido");
+            txtNombre.setError(getString(R.string.nombreCampoRequerido));
 
         } else if (txtCedula.length() <= 0) {
 
-            txtCedula.setError("Debe ingresar un número de cédula");
+            txtCedula.setError(getString(R.string.cedCampoRequerido));
 
         } else if (txtTelefono.length() <= 0) {
 
-            txtTelefono.setError("Digite un teléfono para localizar al cliente");
+            txtTelefono.setError(getString(R.string.telCampoRequerido));
 
         } else if (txtDireccion.length() <= 0) {
 
-            txtDireccion.setError("El campo dirección es requerido");
+            txtDireccion.setError(getString(R.string.direccionCampoRequerido));
 
         } else {
 
@@ -147,12 +147,12 @@ public class ConfiguracionClientesFragment extends Fragment {
 
     private void showError() {
         Toast.makeText(getActivity(),
-                "Error al agregar nueva información", Toast.LENGTH_SHORT).show();
+                getString(R.string.errorMessage), Toast.LENGTH_SHORT).show();
     }
 
     private void showSuccess() {
         Toast.makeText(getActivity(),
-                "Cliente guardado correctamente", Toast.LENGTH_SHORT).show();
+                getString(R.string.saveMessageClient), Toast.LENGTH_SHORT).show();
     }
 
 }
